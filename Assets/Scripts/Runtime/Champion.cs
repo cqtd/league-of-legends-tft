@@ -5,9 +5,23 @@ namespace CQ.LeagueOfLegends.TFT
     [DefaultExecutionOrder(100)]
     public class Champion : AttackableUnit
     {
+        Material mat;
+        public double threshold = 0.1f;
+
+        void Start()
+        {
+            mat = Instantiate(GetComponent<MeshRenderer>().sharedMaterial);
+            GetComponent<MeshRenderer>().sharedMaterial = mat;
+
+            mat.color = Color.white;
+        }
+
+        float lastAttacked;
 
         protected override void Update()
         {
+            if (!roundStarted) return;
+            
             SkillLogic();
             
             if (HasTarget())
@@ -18,6 +32,11 @@ namespace CQ.LeagueOfLegends.TFT
 
             Move(); 
             FindSkillTarget();
+
+            if (Time.time - lastAttacked > threshold)
+            {
+                mat.color = Color.white;
+            }
         }
 
         void SkillLogic()
@@ -49,6 +68,14 @@ namespace CQ.LeagueOfLegends.TFT
         void FindSkillTarget()
         {
             
+        }
+
+        public override void OnAttacked(float damage)
+        {
+            base.OnAttacked(damage);
+
+            lastAttacked = Time.time;
+            mat.color = Color.red;
         }
     }
 }

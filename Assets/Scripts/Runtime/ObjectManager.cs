@@ -9,11 +9,14 @@ namespace CQ.LeagueOfLegends.TFT
 		static ObjectManager instance;
 
 		Dictionary<int, List<AttackableUnit>> objects;
+		List<AttackableUnit> all;
 
 		void Awake()
 		{
 			instance = this;
 			objects = new Dictionary<int, List<AttackableUnit>>();
+			all = new List<AttackableUnit>();
+			
 			DontDestroyOnLoad(this.gameObject);
 		}
 
@@ -26,6 +29,8 @@ namespace CQ.LeagueOfLegends.TFT
 			
 			list.Add(unit);
 			instance.objects[unit.team] = list;
+
+			instance.all.Add(unit);
 			
 			Debug.Log($"ObjectManager::Add::Unit has been added. {unit.name}");
 		}
@@ -37,6 +42,7 @@ namespace CQ.LeagueOfLegends.TFT
 			list.Remove(unit);
 
 			instance.objects[team] = list;
+			instance.all.Remove(unit);
 		}
 
 		public static List<AttackableUnit> GetEnemies(int team)
@@ -49,6 +55,11 @@ namespace CQ.LeagueOfLegends.TFT
 			}
 
 			return enemies;
+		}
+
+		public static List<AttackableUnit> GetAllUnits()
+		{
+			return instance.all;
 		}
 	}
 }
