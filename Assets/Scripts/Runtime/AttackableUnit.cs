@@ -1,4 +1,5 @@
 ﻿using System;
+using CQ.LeagueOfLegends.TFT.UI;
 using UnityEngine;
 
 namespace CQ.LeagueOfLegends.TFT
@@ -6,24 +7,15 @@ namespace CQ.LeagueOfLegends.TFT
 	[DefaultExecutionOrder(100)]
 	public class AttackableUnit : MonoBehaviour
 	{
-		
-		
+		public int tier = 1;
 		public int team = 100;
 		public float attackRange = 1.5f;
-		public float attackDelay = 0.7f;
-
-		public float attackDamage = 50.0f;
-		public float armor = 30.0f;
-		public float abilityPower = 0.0f;
-		public float magicResist = 20;
-
-		public float maxHealth;
-		public float maxMana;
 
 		[Header("Pawn Control")]
 		public float speed = 350;
 		public float velocityParameter = 0.008f;
-		
+
+		public UnitData unitData;
 
 		public bool IsTargetable {
 			get
@@ -43,12 +35,41 @@ namespace CQ.LeagueOfLegends.TFT
 		[NonSerialized] public float currentHealth;
 		[NonSerialized] public float currentMana;
 		[NonSerialized] public float currentAttackDamage;
+		[NonSerialized] public float currentAttackRange;
 		[NonSerialized] public float currentArmor;
+		[NonSerialized] public float currentAbilityPower;
+		[NonSerialized] public float currentMagicResist;
+
+		public float uiOffset = 0.8f;
+
+		public float GetAttackDelay()
+		{
+			return 1 / (unitData.attackSpeed);
+		}
 
 		void Awake()
 		{
 			ObjectManager.Add(this);
 			rb = GetComponent<Rigidbody>();
+			
+			Initialize();
+		}
+
+		protected virtual void Start()
+		{
+			CanvasManager.NameTagsManager.Register(this);
+		}
+
+
+		void Initialize()
+		{
+			currentHealth = unitData.maxHealth;
+			currentMana = unitData.maxMana;
+			currentAttackDamage = unitData.attackDamage;
+			currentAttackRange = unitData.attackRange;
+			currentArmor = unitData.armor;
+			currentAbilityPower = unitData.abilityPower;
+			currentMagicResist = unitData.magicResist;
 		}
 
 		protected virtual void Update()
@@ -90,22 +111,26 @@ namespace CQ.LeagueOfLegends.TFT
 
 		public virtual void OnAttacked(float damage)
 		{
-			
+			currentHealth -= damage;
+
+			if (currentHealth < 0)
+			{
+				Destroy(gameObject);
+			}
 		}
 
 		void DoAttack()
 		{
 			pendingTime = 0.0f;
 			
-			// Debug.Log($"Attack! {gameObject.name} - {target.gameObject.name}");
-			target.OnAttacked(attackDamage);
+			target.OnAttacked(currentAttackDamage);
 		}
 
 		bool IsInAttackDelay()
 		{
 			pendingTime += Time.deltaTime;
 			
-			if (pendingTime > attackDelay)
+			if (pendingTime > GetAttackDelay())
 			{
 				return false;
 			}
@@ -198,6 +223,7 @@ namespace CQ.LeagueOfLegends.TFT
 		void OnDestroy()
 		{
 			IsInvalid = true;
+			CanvasManager.NameTagsManager.Unregister(this);
 			ObjectManager.Remove(this);
 		}
 		

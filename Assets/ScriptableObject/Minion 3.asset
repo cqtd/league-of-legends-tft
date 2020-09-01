@@ -1,0 +1,23 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 955646baff1a41b3ae0a877ad4b15c34, type: 3}
+  m_Name: Minion 3
+  m_EditorClassIdentifier: 
+  unitName: creep 3
+  attackDamage: 50
+  attackSpeed: 0.7
+  attackRange: 1.8
+  armor: 30
+  abilityPower: 0
+  magicResist: 20
+  maxHealth: 1000
+  maxMana: 100

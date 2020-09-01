@@ -8,8 +8,10 @@ namespace CQ.LeagueOfLegends.TFT
         Material mat;
         public double threshold = 0.1f;
 
-        void Start()
+        protected override void Start()
         {
+            base.Start();
+            
             mat = Instantiate(GetComponent<MeshRenderer>().sharedMaterial);
             GetComponent<MeshRenderer>().sharedMaterial = mat;
 
