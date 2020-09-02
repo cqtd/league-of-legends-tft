@@ -7,15 +7,22 @@ namespace CQ.LeagueOfLegends.TFT
 	[DefaultExecutionOrder(100)]
 	public class AttackableUnit : MonoBehaviour
 	{
+		[Header("Instance Data")]
 		public int tier = 1;
 		public int team = 100;
-		public float attackRange = 1.5f;
 
 		[Header("Pawn Control")]
 		public float speed = 350;
 		public float velocityParameter = 0.008f;
 
+		public float missileSpeed = 1;
+
+		[Header("Data Binder")]
 		public UnitData unitData;
+		public Bullet prefabBullet;
+		
+		[Header("UI")]
+		public float uiOffset = 0.8f;
 
 		public bool IsTargetable {
 			get
@@ -31,6 +38,7 @@ namespace CQ.LeagueOfLegends.TFT
 		
 		[NonSerialized] public bool roundStarted;
 		[NonSerialized] public bool IsInvalid;
+		[NonSerialized] public bool IsMelee;
 		
 		[NonSerialized] public float currentHealth;
 		[NonSerialized] public float currentMana;
@@ -40,12 +48,6 @@ namespace CQ.LeagueOfLegends.TFT
 		[NonSerialized] public float currentAbilityPower;
 		[NonSerialized] public float currentMagicResist;
 
-		public float uiOffset = 0.8f;
-
-		public float GetAttackDelay()
-		{
-			return 1 / (unitData.attackSpeed);
-		}
 
 		void Awake()
 		{
@@ -63,18 +65,6 @@ namespace CQ.LeagueOfLegends.TFT
 		void OnEnable()
 		{
 			CanvasManager.NameTagsManager.Register(this);
-		}
-
-
-		void Initialize()
-		{
-			currentHealth = unitData.maxHealth;
-			currentMana = unitData.maxMana;
-			currentAttackDamage = unitData.attackDamage;
-			currentAttackRange = unitData.attackRange;
-			currentArmor = unitData.armor;
-			currentAbilityPower = unitData.abilityPower;
-			currentMagicResist = unitData.magicResist;
 		}
 
 		protected virtual void Update()
@@ -102,6 +92,22 @@ namespace CQ.LeagueOfLegends.TFT
 			}
 		}
 
+		void Initialize()
+		{
+			currentHealth = unitData.maxHealth;
+			currentMana = unitData.maxMana;
+			currentAttackDamage = unitData.attackDamage;
+			currentAttackRange = unitData.attackRange;
+			currentArmor = unitData.armor;
+			currentAbilityPower = unitData.abilityPower;
+			currentMagicResist = unitData.magicResist;
+		}
+		
+		public float GetAttackDelay()
+		{
+			return 1 / (unitData.attackSpeed);
+		}
+
 		protected bool AttackLogic()
 		{
 			if (!CanAttack())
@@ -126,21 +132,39 @@ namespace CQ.LeagueOfLegends.TFT
 
 		void Die()
 		{
-			if (IsInvalid) return;
-			
 			IsInvalid = true;
+			
 			CanvasManager.NameTagsManager.Unregister(this);
 			ObjectManager.Remove(this);
 			
-			Destroy(gameObject, 1.0f);
 			gameObject.SetActive(false);
+			Destroy(gameObject);
 		}
 
 		void DoAttack()
 		{
 			pendingTime = 0.0f;
 			
-			target.OnAttacked(currentAttackDamage);
+			SpawnBullet();
+		}
+
+		void SpawnBullet()
+		{
+			Vector3 direction;
+			direction = (target.transform.position - transform.position).normalized;
+			
+			Bullet bullet = Instantiate(this.prefabBullet);
+
+			bullet.transform.rotation = Quaternion.LookRotation(direction);
+			bullet.transform.position = transform.position;
+
+			bullet.SetDirection(direction);
+			bullet.SetSpeed(this.missileSpeed);
+			bullet.SetTarget(target);
+			bullet.SetContext(new DamageContext()
+			{
+				damage = currentAttackDamage
+			});
 		}
 
 		bool IsInAttackDelay()
@@ -163,13 +187,13 @@ namespace CQ.LeagueOfLegends.TFT
 			}
 
 			var dist = Vector3.Distance(target.transform.position, transform.position);
-			if (dist > attackRange)
+			if (dist > currentAttackRange)
 			{
 				return false;
 			}
 			else
 			{
-				Stop();
+				HoldPosition();
 			}
 
 			return true;
@@ -198,7 +222,7 @@ namespace CQ.LeagueOfLegends.TFT
 			}
 		}
 
-		void Stop()
+		void HoldPosition()
 		{
 			destination = transform.position;
 		}
@@ -240,15 +264,6 @@ namespace CQ.LeagueOfLegends.TFT
 			}
 		}
 
-		void OnDisable()
-		{
-			// if (IsInvalid) return;
-			//
-			// IsInvalid = true;
-			// CanvasManager.NameTagsManager.Unregister(this);
-			// ObjectManager.Remove(this);
-		}
-		
 		protected Vector3 CurrentPosition()
 		{
 			return new Vector3(rb.position.x, 0, rb.position.z);
@@ -259,7 +274,10 @@ namespace CQ.LeagueOfLegends.TFT
 		void OnDrawGizmos()
 		{
 			UnityEditor.Handles.color = new Color(1, .1f, .14f);
-			UnityEditor.Handles.DrawWireDisc(transform.position, transform.up, attackRange);
+			if (Application.isPlaying)
+				UnityEditor.Handles.DrawWireDisc(transform.position, transform.up, currentAttackRange);
+			else
+				UnityEditor.Handles.DrawWireDisc(transform.position, transform.up, unitData.attackRange);
 
 			if (target != null)
 			{
@@ -268,11 +286,9 @@ namespace CQ.LeagueOfLegends.TFT
 			}
 		}
 #endif
-		
-		[ContextMenu("Clear Target")]
-		void ClearTarget()
+		public void TakeDamage(DamageContext context)
 		{
-			target = null;
+			OnAttacked(context.damage);
 		}
 	}
 }

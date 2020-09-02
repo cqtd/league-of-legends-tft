@@ -386,10 +386,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   tier: 1
   team: 300
-  attackRange: 1.4
   speed: 200
   velocityParameter: 0.008
+  missileSpeed: 2
   unitData: {fileID: 11400000, guid: 61d7fb7415633124f9060692507008e7, type: 2}
+  prefabBullet: {fileID: 2409263350888383046, guid: b036b392d031aa348876bd42d847e43b, type: 3}
   uiOffset: 1.2
 --- !u!54 &43317130
 Rigidbody:
@@ -805,10 +806,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   tier: 1
   team: 100
-  attackRange: 3
   speed: 350
   velocityParameter: 0.008
+  missileSpeed: 1
   unitData: {fileID: 11400000, guid: ad92cd20b7ea4274d801b710ad7eac64, type: 2}
+  prefabBullet: {fileID: 0}
   uiOffset: 1
   threshold: 0.10000000149011612
 --- !u!136 &280051524
@@ -1263,10 +1265,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   tier: 1
   team: 300
-  attackRange: 1.4
   speed: 200
   velocityParameter: 0.008
+  missileSpeed: 2
   unitData: {fileID: 11400000, guid: 4e38fada0bfcf0a448ac5e08a7296472, type: 2}
+  prefabBullet: {fileID: 2409263350888383046, guid: b036b392d031aa348876bd42d847e43b, type: 3}
   uiOffset: 1.2
 --- !u!65 &437187309
 BoxCollider:
@@ -1720,10 +1723,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   tier: 1
   team: 300
-  attackRange: 1.4
   speed: 200
   velocityParameter: 0.008
+  missileSpeed: 2
   unitData: {fileID: 11400000, guid: 4efeff8336d2b0b4bac779071ce24462, type: 2}
+  prefabBullet: {fileID: 2409263350888383046, guid: b036b392d031aa348876bd42d847e43b, type: 3}
   uiOffset: 1.2
 --- !u!65 &884041696
 BoxCollider:
@@ -4454,10 +4458,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   tier: 1
   team: 100
-  attackRange: 3
   speed: 350
   velocityParameter: 0.008
+  missileSpeed: 1
   unitData: {fileID: 11400000, guid: 510dacbc16be3304595cd6ca040be88a, type: 2}
+  prefabBullet: {fileID: 0}
   uiOffset: 1
   threshold: 0.10000000149011612
 --- !u!54 &2110171880
