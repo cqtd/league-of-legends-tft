@@ -57,6 +57,11 @@ namespace CQ.LeagueOfLegends.TFT
 
 		protected virtual void Start()
 		{
+			
+		}
+
+		void OnEnable()
+		{
 			CanvasManager.NameTagsManager.Register(this);
 		}
 
@@ -115,8 +120,20 @@ namespace CQ.LeagueOfLegends.TFT
 
 			if (currentHealth < 0)
 			{
-				Destroy(gameObject);
+				Die();
 			}
+		}
+
+		void Die()
+		{
+			if (IsInvalid) return;
+			
+			IsInvalid = true;
+			CanvasManager.NameTagsManager.Unregister(this);
+			ObjectManager.Remove(this);
+			
+			Destroy(gameObject, 1.0f);
+			gameObject.SetActive(false);
 		}
 
 		void DoAttack()
@@ -160,7 +177,10 @@ namespace CQ.LeagueOfLegends.TFT
 
 		protected bool HasTarget()
 		{
-			return target != null;
+			if (target == null) return false;
+			if (target.IsInvalid) return false;
+
+			return true;
 		}
 		
 		protected void Move()
@@ -220,11 +240,13 @@ namespace CQ.LeagueOfLegends.TFT
 			}
 		}
 
-		void OnDestroy()
+		void OnDisable()
 		{
-			IsInvalid = true;
-			CanvasManager.NameTagsManager.Unregister(this);
-			ObjectManager.Remove(this);
+			// if (IsInvalid) return;
+			//
+			// IsInvalid = true;
+			// CanvasManager.NameTagsManager.Unregister(this);
+			// ObjectManager.Remove(this);
 		}
 		
 		protected Vector3 CurrentPosition()

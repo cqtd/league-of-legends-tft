@@ -5,7 +5,7 @@ namespace CQ.LeagueOfLegends.TFT.UI
 {
 	public class NameTagsManager : MonoBehaviour
 	{
-		Dictionary<AttackableUnit, NameTags> map = new Dictionary<AttackableUnit, NameTags>();
+		Dictionary<AttackableUnit, NameTags> map;
 
 		void Awake()
 		{
@@ -31,9 +31,18 @@ namespace CQ.LeagueOfLegends.TFT.UI
 			{
 				return;
 			}
-			
-			Destroy(inst.gameObject);
-			map.Remove(unit);
+
+			if (ReferenceEquals(inst, null))
+			{
+				return;
+			}
+
+
+			{
+				// Debug.Log(inst.name);
+				Destroy(inst.gameObject);
+				map.Remove(unit);	
+			}
 		}
 
 		void LateUpdate()
