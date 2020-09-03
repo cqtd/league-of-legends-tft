@@ -13,11 +13,94 @@ MonoBehaviour:
   m_Name: Minion 2
   m_EditorClassIdentifier: 
   unitName: creep 2
-  attackDamage: 50
-  attackSpeed: 0.7
-  attackRange: 1.8
-  armor: 30
-  abilityPower: 0
-  magicResist: 20
-  maxHealth: 1000
-  maxMana: 100
+  isMelee: 1
+  attackDamage:
+    defaultValue: 50
+    valuePerLevel: 10
+    useValuePerLevel: 1
+    definedValues:
+    - 50
+    - 60.000004
+    - 70
+    - 80
+  attackSpeed:
+    defaultValue: 0.7
+    valuePerLevel: 0.14
+    useValuePerLevel: 1
+    definedValues:
+    - 0.7
+    - 0.84000003
+    - 0.97999996
+    - 1.12
+  attackRange:
+    defaultValue: 1.8
+    valuePerLevel: 0.35999998
+    useValuePerLevel: 1
+    definedValues:
+    - 1.8
+    - 2.16
+    - 2.52
+    - 2.8799999
+  armor:
+    defaultValue: 30
+    valuePerLevel: 8
+    useValuePerLevel: 1
+    definedValues:
+    - 30
+    - 36
+    - 42
+    - 48
+  abilityPower:
+    defaultValue: 0
+    valuePerLevel: 0
+    useValuePerLevel: 1
+    definedValues:
+    - 0
+    - 0
+    - 0
+    - 0
+  magicResist:
+    defaultValue: 20
+    valuePerLevel: 4
+    useValuePerLevel: 1
+    definedValues:
+    - 20
+    - 24
+    - 28
+    - 32
+  maxHealth:
+    defaultValue: 720
+    valuePerLevel: 340
+    useValuePerLevel: 1
+    definedValues:
+    - 720
+    - 864.00006
+    - 1008
+    - 1152
+  maxMana:
+    defaultValue: 100
+    valuePerLevel: 0
+    useValuePerLevel: 1
+    definedValues:
+    - 100
+    - 120.00001
+    - 140
+    - 160
+  manaPerAttack:
+    defaultValue: 10
+    valuePerLevel: 2
+    useValuePerLevel: 1
+    definedValues:
+    - 10
+    - 12
+    - 14
+    - 16
+  manaPerHit:
+    defaultValue: 5
+    valuePerLevel: 3
+    useValuePerLevel: 1
+    definedValues:
+    - 5
+    - 6
+    - 7
+    - 8

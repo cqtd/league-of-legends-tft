@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using CQ.LeagueOfLegends.TFT.UI;
 using UnityEngine;
 
@@ -40,14 +41,104 @@ namespace CQ.LeagueOfLegends.TFT
 		[NonSerialized] public bool IsInvalid;
 		[NonSerialized] public bool IsMelee;
 		
-		[NonSerialized] public float currentHealth;
-		[NonSerialized] public float currentMana;
-		[NonSerialized] public float currentAttackDamage;
-		[NonSerialized] public float currentAttackRange;
-		[NonSerialized] public float currentArmor;
-		[NonSerialized] public float currentAbilityPower;
-		[NonSerialized] public float currentMagicResist;
+		[NonSerialized] float health;
+		[NonSerialized] float mana;
+		
+		// [NonSerialized] public float currentMana;
+		//
+		// [NonSerialized] public float currentAttackRange;
+		// [NonSerialized] public float currentArmor;
+		// [NonSerialized] public float currentAbilityPower;
+		// [NonSerialized] public float currentMagicResist;
 
+		BuffManager buffManager;
+		List<IComponent> components;
+
+		#region Character Data
+
+		public float GetAttackDamage() 
+		{
+			float vanila = unitData.attackDamage.Get(tier);
+
+			// @todo
+			// process item value
+			// process buff value
+
+			return vanila;
+		}
+
+		public float GetAttackRange()
+		{
+			float vanila = unitData.attackRange.Get(tier);
+
+			// @todo
+			// process item value
+			// process buff value
+			
+			return vanila;
+		}
+		
+		public float GetAttackSpeed()
+		{
+			float vanila = unitData.attackSpeed.Get(tier);
+
+			// @todo
+			// process item value
+			// process buff value
+			
+			return vanila;
+		}
+				
+		public float GetAttackDelay()
+		{
+			return 1 / (GetAttackSpeed());
+		}
+
+		public float GetHealth()
+		{
+			return health;
+		}
+
+		public void SetHealth(float value)
+		{
+			this.health = value;
+		}
+		
+		public float GetMaxHealth()
+		{
+			float vanila = unitData.maxHealth.Get(tier);
+
+			// @todo
+			// process item value
+			// process buff value
+			
+			return vanila;
+		}
+		
+		public float GetMana()
+		{
+			return mana;
+		}
+
+		public void SetMana(float value)
+		{
+			this.mana = value;
+		}
+		
+		public float GetMaxMana()
+		{
+			float vanila = unitData.maxMana.Get(tier);
+
+			// @todo
+			// process item value
+			// process buff value
+			
+			return vanila;
+		}
+
+		#endregion
+
+		#region Unity Events
 
 		void Awake()
 		{
@@ -90,23 +181,61 @@ namespace CQ.LeagueOfLegends.TFT
 				Move();
 				FindTarget();
 			}
+
+			foreach (IComponent component in components)
+			{
+				component.OnUpdate();
+			}
 		}
+
+		void FixedUpdate()
+		{
+			foreach (IComponent component in components)
+			{
+				component.OnFixedUpdate();
+			}
+		}
+
+		#region Editor
+		
+#if UNITY_EDITOR
+		void OnDrawGizmos()
+		{
+			UnityEditor.Handles.color = new Color(1, .1f, .14f);
+			if (Application.isPlaying)
+				UnityEditor.Handles.DrawWireDisc(transform.position, transform.up, GetAttackRange());
+			else
+				UnityEditor.Handles.DrawWireDisc(transform.position, transform.up, unitData.attackRange.defaultValue);
+
+			if (target != null)
+			{
+				UnityEditor.Handles.color = Color.white;
+				UnityEditor.Handles.DrawLines(new Vector3[] {transform.position, target.transform.position});
+			}
+		}
+#endif
+		#endregion		
+
+		#endregion
 
 		void Initialize()
 		{
-			currentHealth = unitData.maxHealth;
-			currentMana = unitData.maxMana;
-			currentAttackDamage = unitData.attackDamage;
-			currentAttackRange = unitData.attackRange;
-			currentArmor = unitData.armor;
-			currentAbilityPower = unitData.abilityPower;
-			currentMagicResist = unitData.magicResist;
+			// currentHealth = unitData.maxHealth;
+			// currentMana = unitData.maxMana;
+			// currentAttackDamage = unitData.attackDamage;
+			// currentAttackRange = unitData.attackRange;
+			// currentArmor = unitData.armor;
+			// currentAbilityPower = unitData.abilityPower;
+			// currentMagicResist = unitData.magicResist;
+			
+			components = new List<IComponent>();
+			
+			buffManager = new BuffManager();
+			buffManager.Initialize();
+			
+			components.Add(buffManager);
 		}
-		
-		public float GetAttackDelay()
-		{
-			return 1 / (unitData.attackSpeed);
-		}
+
 
 		protected bool AttackLogic()
 		{
@@ -122,9 +251,9 @@ namespace CQ.LeagueOfLegends.TFT
 
 		public virtual void OnAttacked(float damage)
 		{
-			currentHealth -= damage;
+			SetHealth(GetHealth() - damage);
 
-			if (currentHealth < 0)
+			if (GetHealth() < 0)
 			{
 				Die();
 			}
@@ -163,7 +292,7 @@ namespace CQ.LeagueOfLegends.TFT
 			bullet.SetTarget(target);
 			bullet.SetContext(new DamageContext()
 			{
-				damage = currentAttackDamage
+				damage = GetAttackDamage(),
 			});
 		}
 
@@ -187,7 +316,7 @@ namespace CQ.LeagueOfLegends.TFT
 			}
 
 			var dist = Vector3.Distance(target.transform.position, transform.position);
-			if (dist > currentAttackRange)
+			if (dist > GetAttackRange())
 			{
 				return false;
 			}
@@ -268,24 +397,7 @@ namespace CQ.LeagueOfLegends.TFT
 		{
 			return new Vector3(rb.position.x, 0, rb.position.z);
 		}
-		
-		
-#if UNITY_EDITOR
-		void OnDrawGizmos()
-		{
-			UnityEditor.Handles.color = new Color(1, .1f, .14f);
-			if (Application.isPlaying)
-				UnityEditor.Handles.DrawWireDisc(transform.position, transform.up, currentAttackRange);
-			else
-				UnityEditor.Handles.DrawWireDisc(transform.position, transform.up, unitData.attackRange);
 
-			if (target != null)
-			{
-				UnityEditor.Handles.color = Color.white;
-				UnityEditor.Handles.DrawLines(new Vector3[] {transform.position, target.transform.position});
-			}
-		}
-#endif
 		public void TakeDamage(DamageContext context)
 		{
 			OnAttacked(context.damage);

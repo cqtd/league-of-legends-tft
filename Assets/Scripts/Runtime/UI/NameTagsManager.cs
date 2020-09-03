@@ -21,8 +21,8 @@ namespace CQ.LeagueOfLegends.TFT.UI
 			inst.unitName.text = unit.unitData.unitName;
 			inst.tier.text = unit.tier.ToString();
 			
-			inst.healthBar.value = unit.currentHealth / unit.unitData.maxHealth;
-			inst.manaBar.value = unit.currentMana / unit.unitData.maxMana;
+			inst.healthBar.value = unit.GetHealth() / unit.GetMaxHealth();
+			inst.manaBar.value = unit.GetMana() / unit.GetMaxMana();
 		}
 
 		public void Unregister(AttackableUnit unit)
@@ -52,8 +52,8 @@ namespace CQ.LeagueOfLegends.TFT.UI
 				var inst = valuePair.Value;
 				var unit = valuePair.Key;
 				
-				inst.healthBar.value = unit.currentHealth / unit.unitData.maxHealth;
-				inst.manaBar.value = unit.currentMana / unit.unitData.maxMana;
+				inst.healthBar.value = unit.GetHealth() / unit.GetMaxHealth();
+				inst.manaBar.value = unit.GetMana() / unit.GetMaxMana();
 
 				var scrPos = Camera.main.WorldToScreenPoint(unit.transform.position + unit.uiOffset * Vector3.up);
 				inst.transform.position = scrPos;
