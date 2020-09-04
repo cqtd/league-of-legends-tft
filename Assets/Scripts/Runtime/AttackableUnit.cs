@@ -32,10 +32,10 @@ namespace CQ.LeagueOfLegends.TFT
 			}
 		}
 
-		AttackableUnit target;
-		Vector3 destination;
-		float pendingTime = 0.0f;
-		Rigidbody rb;
+		[NonSerialized] AttackableUnit target;
+		[NonSerialized] Vector3 destination;
+		[NonSerialized] float pendingTime = 0.0f;
+		[NonSerialized] Rigidbody rb;
 		
 		[NonSerialized] public bool roundStarted;
 		[NonSerialized] public bool IsInvalid;
@@ -43,13 +43,6 @@ namespace CQ.LeagueOfLegends.TFT
 		
 		[NonSerialized] float health;
 		[NonSerialized] float mana;
-		
-		// [NonSerialized] public float currentMana;
-		//
-		// [NonSerialized] public float currentAttackRange;
-		// [NonSerialized] public float currentArmor;
-		// [NonSerialized] public float currentAbilityPower;
-		// [NonSerialized] public float currentMagicResist;
 
 		BuffManager buffManager;
 		List<IComponent> components;
@@ -220,13 +213,8 @@ namespace CQ.LeagueOfLegends.TFT
 
 		void Initialize()
 		{
-			// currentHealth = unitData.maxHealth;
-			// currentMana = unitData.maxMana;
-			// currentAttackDamage = unitData.attackDamage;
-			// currentAttackRange = unitData.attackRange;
-			// currentArmor = unitData.armor;
-			// currentAbilityPower = unitData.abilityPower;
-			// currentMagicResist = unitData.magicResist;
+			health = unitData.initHealth.Get(tier);
+			mana = unitData.initMana.Get(tier);
 			
 			components = new List<IComponent>();
 			
@@ -235,7 +223,6 @@ namespace CQ.LeagueOfLegends.TFT
 			
 			components.Add(buffManager);
 		}
-
 
 		protected bool AttackLogic()
 		{
