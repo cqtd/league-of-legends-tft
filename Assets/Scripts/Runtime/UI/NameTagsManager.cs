@@ -10,9 +10,12 @@ namespace CQ.LeagueOfLegends.TFT.UI
 		void Awake()
 		{
 			map = new Dictionary<AttackableUnit, NameTags>();
+			
+			AttackableUnit.onCreate.AddListener(Register);
+			AttackableUnit.onDestroy.AddListener(Unregister);
 		}
 
-		public void Register(AttackableUnit unit)
+		void Register(AttackableUnit unit)
 		{
 			var nameTags = Resources.Load<NameTags>("UI/NameTag");
 			var inst = Instantiate(nameTags, transform);
@@ -25,7 +28,7 @@ namespace CQ.LeagueOfLegends.TFT.UI
 			inst.manaBar.value = unit.GetMana() / unit.GetMaxMana();
 		}
 
-		public void Unregister(AttackableUnit unit)
+		void Unregister(AttackableUnit unit)
 		{
 			if (!map.TryGetValue(unit, out var inst))
 			{

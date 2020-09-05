@@ -1,13 +1,46 @@
 ﻿using System;
 using System.Collections.Generic;
-using CQ.LeagueOfLegends.TFT.UI;
 using UnityEngine;
+using UnityEngine.Events;
 
 namespace CQ.LeagueOfLegends.TFT
 {
+	public class UnitEvent : UnityEvent<AttackableUnit> { }
+	public class UnitBoolEvent : UnityEvent<AttackableUnit, bool> { }
+	
 	[DefaultExecutionOrder(100)]
 	public class AttackableUnit : MonoBehaviour
 	{
+		[RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.BeforeSceneLoad)]
+		static void Reload()
+		{
+			activeUnits = new List<AttackableUnit>();
+			
+			onActivationChanged = new UnitBoolEvent();
+			onCreate = new UnitEvent();
+			onDestroy = new UnitEvent();
+		}
+
+		/// <summary>
+		/// 모든 활성화 유닛 리스트
+		/// </summary>
+		[NonSerialized] public static List<AttackableUnit> activeUnits = new List<AttackableUnit>();
+		
+		/// <summary>
+		/// 활성화 변경 콜백
+		/// </summary>
+		[NonSerialized] public static UnitBoolEvent onActivationChanged;
+		
+		/// <summary>
+		/// 유닛 생성 콜백
+		/// </summary>
+		[NonSerialized] public static UnitEvent onCreate;
+		
+		/// <summary>
+		/// 유닛 삭제 콜백
+		/// </summary>
+		[NonSerialized] public static UnitEvent onDestroy;
+		
 		[Header("Instance Data")]
 		public int tier = 1;
 		public int team = 100;
@@ -114,7 +147,7 @@ namespace CQ.LeagueOfLegends.TFT
 		}
 
 		public void SetMana(float value)
-		{
+		{	
 			this.mana = value;
 		}
 		
@@ -148,7 +181,18 @@ namespace CQ.LeagueOfLegends.TFT
 
 		void OnEnable()
 		{
-			CanvasManager.NameTagsManager.Register(this);
+			activeUnits.Add(this);
+			onActivationChanged.Invoke(this, true);
+			
+			onCreate.Invoke(this);
+			
+			// CanvasManager.NameTagsManager.Register(this);
+		}
+
+		void OnDisable()
+		{
+			activeUnits.Remove(this);
+			onActivationChanged.Invoke(this, false);
 		}
 
 		protected virtual void Update()
@@ -250,7 +294,8 @@ namespace CQ.LeagueOfLegends.TFT
 		{
 			IsInvalid = true;
 			
-			CanvasManager.NameTagsManager.Unregister(this);
+			onDestroy.Invoke(this);
+			// CanvasManager.NameTagsManager.Unregister(this);
 			ObjectManager.Remove(this);
 			
 			gameObject.SetActive(false);

@@ -7,7 +7,7 @@ namespace CQ.LeagueOfLegends.TFT
 	{
 		public int bakeTime = 2;
 		public int countdown = 3;
-		
+
 		void Start()
 		{
 			StartCoroutine(RoundCountdown());

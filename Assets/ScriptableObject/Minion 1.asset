@@ -77,6 +77,15 @@ MonoBehaviour:
     - 864.00006
     - 1008
     - 1152
+  initHealth:
+    defaultValue: 720
+    valuePerLevel: 340
+    useValuePerLevel: 1
+    definedValues:
+    - 720
+    - 864.00006
+    - 1008
+    - 1152
   maxMana:
     defaultValue: 100
     valuePerLevel: 0
@@ -86,6 +95,15 @@ MonoBehaviour:
     - 120.00001
     - 140
     - 160
+  initMana:
+    defaultValue: 35
+    valuePerLevel: 5
+    useValuePerLevel: 1
+    definedValues:
+    - 35
+    - 42
+    - 49
+    - 56
   manaPerAttack:
     defaultValue: 10
     valuePerLevel: 2
@@ -104,3 +122,4 @@ MonoBehaviour:
     - 6
     - 7
     - 8
+  dummy: 0

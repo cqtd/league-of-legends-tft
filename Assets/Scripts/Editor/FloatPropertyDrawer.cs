@@ -16,15 +16,13 @@ namespace Editor
 			}
 
 			return 40;
-			// return Screen.width < 333 ? (16 + 18) : 16;
-			// return base.GetPropertyHeight(property, label);
 		}
-		
 
 		SerializedProperty defaultValue;
 		SerializedProperty valuePerLevel;
 		SerializedProperty useValuePerLevel;
 		SerializedProperty definedValues;
+		
 		bool cache = false;
 		string displayName;
 		
