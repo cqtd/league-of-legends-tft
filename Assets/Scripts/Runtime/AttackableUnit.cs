@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
@@ -11,14 +12,24 @@ namespace CQ.LeagueOfLegends.TFT
 	[DefaultExecutionOrder(100)]
 	public class AttackableUnit : MonoBehaviour
 	{
+		
+		#region Static Members
+		
 		[RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.BeforeSceneLoad)]
-		static void Reload()
+		static void BeforeSceneLoad()
 		{
-			activeUnits = new List<AttackableUnit>();
+			// activeUnits = new List<AttackableUnit>();
+			//
+			// onActivationChanged = new UnitBoolEvent();
+			// onUnitCreated = new UnitEvent();
+			// onUnitDead = new UnitEvent();
+			// onDestroy = new UnitEvent();
+		}
+
+		[RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.AfterSceneLoad)]
+		static void AfterSceneLoad()
+		{
 			
-			onActivationChanged = new UnitBoolEvent();
-			onCreate = new UnitEvent();
-			onDestroy = new UnitEvent();
 		}
 
 		/// <summary>
@@ -29,31 +40,35 @@ namespace CQ.LeagueOfLegends.TFT
 		/// <summary>
 		/// 활성화 변경 콜백
 		/// </summary>
-		[NonSerialized] public static UnitBoolEvent onActivationChanged;
+		[NonSerialized] public static readonly UnitBoolEvent onActivationChanged = new UnitBoolEvent();
+
+		/// <summary>
+		/// 유닛 생성 콜백 - Start에서 호출
+		/// </summary>
+		[NonSerialized] public static readonly UnitEvent onUnitCreated = new UnitEvent();
 		
 		/// <summary>
-		/// 유닛 생성 콜백
+		/// 유닛 사망 콜백 - Die에서 호출
 		/// </summary>
-		[NonSerialized] public static UnitEvent onCreate;
-		
+		[NonSerialized] public static readonly UnitEvent onUnitDead = new UnitEvent();
+
 		/// <summary>
-		/// 유닛 삭제 콜백
+		/// 유닛 삭제 콜백 - 삭제되기 1 프레임 전에 호출
 		/// </summary>
-		[NonSerialized] public static UnitEvent onDestroy;
+		[NonSerialized] public static readonly UnitEvent onDestroy = new UnitEvent();
 		
+		#endregion
+
 		[Header("Instance Data")]
-		public int tier = 1;
-		public int team = 100;
+		public int initialTier = 1;
+		public int initialTeam = 100;
 
 		[Header("Pawn Control")]
 		public float speed = 350;
 		public float velocityParameter = 0.008f;
 
-		public float missileSpeed = 1;
-
 		[Header("Data Binder")]
 		public UnitData unitData;
-		public Bullet prefabBullet;
 		
 		[Header("UI")]
 		public float uiOffset = 0.8f;
@@ -65,10 +80,14 @@ namespace CQ.LeagueOfLegends.TFT
 			}
 		}
 
+		#region Instance Data
+
 		[NonSerialized] AttackableUnit target;
 		[NonSerialized] Vector3 destination;
-		[NonSerialized] float pendingTime = 0.0f;
+		[NonSerialized] float pendingTime;
 		[NonSerialized] Rigidbody rb;
+		[NonSerialized] Collider col;
+		[NonSerialized] Renderer ren;
 		
 		[NonSerialized] public bool roundStarted;
 		[NonSerialized] public bool IsInvalid;
@@ -76,43 +95,65 @@ namespace CQ.LeagueOfLegends.TFT
 		
 		[NonSerialized] float health;
 		[NonSerialized] float mana;
+		
+		public int Tier { get; protected set; }
+		public int Team { get; protected set; }
 
 		BuffManager buffManager;
 		List<IComponent> components;
+		
+		#endregion
+
+		#region Callback Action
+
+		public UnityAction<BulletContext> onAttack;
+		
+		#endregion
 
 		#region Character Data
-
-		public float GetAttackDamage() 
+		
+		public float GetAttackMissileSpeed()
 		{
-			float vanila = unitData.attackDamage.Get(tier);
+			float result = unitData.attackMissileSpeed.Get(Tier);
 
 			// @todo
 			// process item value
 			// process buff value
 
-			return vanila;
+			return result;
+		}
+
+		public float GetAttackDamage() 
+		{
+			float result = unitData.attackDamage.Get(Tier);
+
+			// @todo
+			// process item value
+			// process buff value
+
+			return result;
 		}
 
 		public float GetAttackRange()
 		{
-			float vanila = unitData.attackRange.Get(tier);
+			float result = unitData.attackRange.Get(Tier);
 
 			// @todo
 			// process item value
 			// process buff value
 			
-			return vanila;
+			return result;
 		}
 		
 		public float GetAttackSpeed()
 		{
-			float vanila = unitData.attackSpeed.Get(tier);
+			float result = unitData.attackSpeed.Get(Tier);
 
 			// @todo
 			// process item value
 			// process buff value
 			
-			return vanila;
+			return result;
 		}
 				
 		public float GetAttackDelay()
@@ -132,13 +173,13 @@ namespace CQ.LeagueOfLegends.TFT
 		
 		public float GetMaxHealth()
 		{
-			float vanila = unitData.maxHealth.Get(tier);
+			float result = unitData.maxHealth.Get(Tier);
 
 			// @todo
 			// process item value
 			// process buff value
 			
-			return vanila;
+			return result;
 		}
 		
 		public float GetMana()
@@ -153,13 +194,13 @@ namespace CQ.LeagueOfLegends.TFT
 		
 		public float GetMaxMana()
 		{
-			float vanila = unitData.maxMana.Get(tier);
+			float result = unitData.maxMana.Get(Tier);
 
 			// @todo
 			// process item value
 			// process buff value
 			
-			return vanila;
+			return result;
 		}
 
 		#endregion
@@ -168,15 +209,17 @@ namespace CQ.LeagueOfLegends.TFT
 
 		void Awake()
 		{
-			ObjectManager.Add(this);
+			// ObjectManager.Add(this);
 			rb = GetComponent<Rigidbody>();
+			col = GetComponent<Collider>();
+			ren = GetComponent<Renderer>();
 			
 			Initialize();
 		}
 
 		protected virtual void Start()
 		{
-			
+			onUnitCreated.Invoke(this);
 		}
 
 		void OnEnable()
@@ -184,7 +227,6 @@ namespace CQ.LeagueOfLegends.TFT
 			activeUnits.Add(this);
 			onActivationChanged.Invoke(this, true);
 			
-			onCreate.Invoke(this);
 			
 			// CanvasManager.NameTagsManager.Register(this);
 		}
@@ -193,6 +235,11 @@ namespace CQ.LeagueOfLegends.TFT
 		{
 			activeUnits.Remove(this);
 			onActivationChanged.Invoke(this, false);
+		}
+
+		void OnDestroy()
+		{
+			onDestroy?.Invoke(this);
 		}
 
 		protected virtual void Update()
@@ -210,12 +257,12 @@ namespace CQ.LeagueOfLegends.TFT
 				}
 				else
 				{
-					Move();
+					ProcessMovement();
 				}
 			}
 			else
 			{
-				Move();
+				ProcessMovement();
 				FindTarget();
 			}
 
@@ -257,8 +304,11 @@ namespace CQ.LeagueOfLegends.TFT
 
 		void Initialize()
 		{
-			health = unitData.initHealth.Get(tier);
-			mana = unitData.initMana.Get(tier);
+			Team = initialTeam;
+			Tier = initialTier;
+			
+			health = unitData.initHealth.Get(Tier);
+			mana = unitData.initMana.Get(Tier);
 			
 			components = new List<IComponent>();
 			
@@ -267,6 +317,8 @@ namespace CQ.LeagueOfLegends.TFT
 			
 			components.Add(buffManager);
 		}
+
+		#region Attack Logic
 
 		protected bool AttackLogic()
 		{
@@ -279,55 +331,7 @@ namespace CQ.LeagueOfLegends.TFT
 			
 			return true;
 		}
-
-		public virtual void OnAttacked(float damage)
-		{
-			SetHealth(GetHealth() - damage);
-
-			if (GetHealth() < 0)
-			{
-				Die();
-			}
-		}
-
-		void Die()
-		{
-			IsInvalid = true;
-			
-			onDestroy.Invoke(this);
-			// CanvasManager.NameTagsManager.Unregister(this);
-			ObjectManager.Remove(this);
-			
-			gameObject.SetActive(false);
-			Destroy(gameObject);
-		}
-
-		void DoAttack()
-		{
-			pendingTime = 0.0f;
-			
-			SpawnBullet();
-		}
-
-		void SpawnBullet()
-		{
-			Vector3 direction;
-			direction = (target.transform.position - transform.position).normalized;
-			
-			Bullet bullet = Instantiate(this.prefabBullet);
-
-			bullet.transform.rotation = Quaternion.LookRotation(direction);
-			bullet.transform.position = transform.position;
-
-			bullet.SetDirection(direction);
-			bullet.SetSpeed(this.missileSpeed);
-			bullet.SetTarget(target);
-			bullet.SetContext(new DamageContext()
-			{
-				damage = GetAttackDamage(),
-			});
-		}
-
+		
 		bool IsInAttackDelay()
 		{
 			pendingTime += Time.deltaTime;
@@ -359,6 +363,45 @@ namespace CQ.LeagueOfLegends.TFT
 
 			return true;
 		}
+		
+		void DoAttack()
+		{
+			pendingTime = 0.0f;
+			
+			Vector3 direction = (target.transform.position - transform.position).normalized;
+
+			BulletContext ctx = new BulletContext()
+			{
+				damage = new DamageContext()
+				{
+					damage = GetAttackDamage(),
+				},
+				owner = this,
+				startPos = transform.position,
+				target = target,
+				missileSpeed = GetAttackMissileSpeed(),
+				direction = direction,
+			};
+
+			onAttack?.Invoke(ctx);
+			SetMana(GetMana() + unitData.manaPerAttack.Get(Tier));
+		}
+
+		public virtual void OnAttacked(float damage)
+		{
+			SetMana(GetMana() + unitData.manaPerHit.Get(Tier));
+			SetHealth(GetHealth() - damage);
+
+			if (GetHealth() < 0)
+			{
+				SetHealth(0);
+				DoDie();
+			}
+		}
+		
+		#endregion
+
+		#region Target
 
 		protected bool HasTarget()
 		{
@@ -368,26 +411,6 @@ namespace CQ.LeagueOfLegends.TFT
 			return true;
 		}
 		
-		protected void Move()
-		{
-			if (target != null)
-			{
-				destination = target.transform.position;
-				var gap = destination - CurrentPosition();
-
-				var direction = gap;
-				direction.Normalize();
-
-				rb.velocity = direction * speed * velocityParameter;
-
-			}
-		}
-
-		void HoldPosition()
-		{
-			destination = transform.position;
-		}
-
 		protected virtual void FindTarget()
 		{
 			FindAttackTarget();
@@ -403,7 +426,7 @@ namespace CQ.LeagueOfLegends.TFT
 				}
 			}
 
-			var enemies = ObjectManager.GetEnemies(this.team);
+			var enemies = ObjectManager.GetEnemies(this.Team);
 			var min = float.MaxValue;
 			AttackableUnit closest = null;
 
@@ -425,9 +448,64 @@ namespace CQ.LeagueOfLegends.TFT
 			}
 		}
 
+		#endregion
+
+		#region Move
+
+		protected void ProcessMovement()
+		{
+			if (target != null)
+			{
+				destination = target.transform.position;
+				var gap = destination - CurrentPosition();
+
+				var direction = gap;
+				direction.Normalize();
+
+				rb.velocity = direction * speed * velocityParameter;
+
+			}
+		}
+
+		public void MoveTo(Vector3 pos)
+		{
+			destination = target.transform.position;
+		}
+
+		void HoldPosition()
+		{
+			destination = transform.position;
+		}
+
 		protected Vector3 CurrentPosition()
 		{
 			return new Vector3(rb.position.x, 0, rb.position.z);
+		}
+
+		#endregion
+
+		void DoDie()
+		{
+			IsInvalid = true;
+			
+			ren.enabled = false;
+			col.enabled = false;
+			
+			onUnitDead.Invoke(this);
+			// ObjectManager.Remove(this);
+			
+			StartCoroutine(BookDestroy());
+			// gameObject.SetActive(false);
+			// Destroy(gameObject);
+		}
+
+		IEnumerator BookDestroy()
+		{
+			yield return new WaitForSeconds(1.0f);
+			onDestroy.Invoke(this);
+			yield return null;
+			
+			Destroy(gameObject, 1f);
 		}
 
 		public void TakeDamage(DamageContext context)

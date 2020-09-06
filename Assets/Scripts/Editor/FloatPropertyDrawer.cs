@@ -1,8 +1,7 @@
-﻿using CQ.LeagueOfLegends.TFT;
-using UnityEditor;
+﻿using UnityEditor;
 using UnityEngine;
 
-namespace Editor
+namespace CQ.LeagueOfLegends.TFT.Editor
 {
 	[CustomPropertyDrawer(typeof(FloatProperty))]
 	public class FloatPropertyDrawer : PropertyDrawer

@@ -18,31 +18,59 @@ namespace CQ.LeagueOfLegends.TFT
 			all = new List<AttackableUnit>();
 			
 			DontDestroyOnLoad(this.gameObject);
+			
+			AttackableUnit.onUnitCreated.AddListener(Add);
+			AttackableUnit.onDestroy.AddListener(Remove);
 		}
-
-		public static void Add(AttackableUnit unit)
+		
+		public static void Add_Static(AttackableUnit unit)
 		{
-			if (!instance.objects.TryGetValue(unit.team, out var list))
+			if (!instance.objects.TryGetValue(unit.Team, out var list))
 			{
 				list = new List<AttackableUnit>();
 			}
 			
 			list.Add(unit);
-			instance.objects[unit.team] = list;
+			instance.objects[unit.Team] = list;
 
 			instance.all.Add(unit);
 			
-			Debug.Log($"ObjectManager::Add::Unit has been added. {unit.name}");
+			// Debug.Log($"ObjectManager::Add::Unit has been added. {unit.name}");
 		}
 
-		public static void Remove(AttackableUnit unit)
+		public static void Remove_Static(AttackableUnit unit)
 		{
-			var team = unit.team;
-			var list = instance.objects[unit.team];
+			var team = unit.Team;
+			var list = instance.objects[unit.Team];
 			list.Remove(unit);
 
 			instance.objects[team] = list;
 			instance.all.Remove(unit);
+		}
+
+		void Add(AttackableUnit unit)
+		{
+			if (!objects.TryGetValue(unit.Team, out var list))
+			{
+				list = new List<AttackableUnit>();
+			}
+			
+			list.Add(unit);
+			objects[unit.Team] = list;
+
+			all.Add(unit);
+			
+			// Debug.Log($"ObjectManager::Add::Unit has been added. {unit.name}");
+		}
+
+		void Remove(AttackableUnit unit)
+		{
+			var team = unit.Team;
+			var list = objects[unit.Team];
+			list.Remove(unit);
+
+			objects[team] = list;
+			all.Remove(unit);
 		}
 
 		public static List<AttackableUnit> GetEnemies(int team)

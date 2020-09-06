@@ -10,6 +10,7 @@ namespace CQ.LeagueOfLegends.TFT
 
 		void Start()
 		{
+			Application.targetFrameRate = 60;
 			StartCoroutine(RoundCountdown());
 		}
 

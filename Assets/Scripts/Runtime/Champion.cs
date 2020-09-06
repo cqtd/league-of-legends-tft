@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System.Collections.Generic;
+using UnityEngine;
 
 namespace CQ.LeagueOfLegends.TFT
 {
@@ -7,6 +8,9 @@ namespace CQ.LeagueOfLegends.TFT
     {
         Material mat;
         public double threshold = 0.1f;
+        public SkillDataBase skill;
+
+        List<AttackableUnit> skillTargets;
 
         protected override void Start()
         {
@@ -14,8 +18,17 @@ namespace CQ.LeagueOfLegends.TFT
             
             mat = Instantiate(GetComponent<MeshRenderer>().sharedMaterial);
             GetComponent<MeshRenderer>().sharedMaterial = mat;
-
             mat.color = Color.white;
+
+            if (unitData is ChampionData champData)
+            {
+                skill = Instantiate(champData.skill);
+                skill.Initialize(this);
+            }
+            else
+            {
+                Debug.LogError("Invalid Champion Data", this);
+            }
         }
 
         float lastAttacked;
@@ -32,8 +45,8 @@ namespace CQ.LeagueOfLegends.TFT
                 return;
             }
 
-            Move(); 
-            FindSkillTarget();
+            ProcessMovement(); 
+            // FindSkillTarget();
 
             if (Time.time - lastAttacked > threshold)
             {
@@ -45,6 +58,7 @@ namespace CQ.LeagueOfLegends.TFT
         {
             if (CanSkill())
             {
+                FindSkillTarget();
                 if (HasSkillTarget())
                 {
                     DoSkill();
@@ -54,22 +68,29 @@ namespace CQ.LeagueOfLegends.TFT
 
         bool CanSkill()
         {
-            return false;
+            if (IsInvalid) return false;
+            if (skill == null) return false;
+            return GetMana() >= GetMaxMana();
         }
 
         void DoSkill()
         {
+            // do skill
+            skill?.Use(skillTargets);
             
+            // release targets
+            skillTargets = null;
+            SetMana(0);
         }
 
         bool HasSkillTarget()
         {
-            return false;
+            return skill != null && skillTargets != null && skillTargets.Count > 0;
         }
 
         void FindSkillTarget()
         {
-            
+            skillTargets = skill?.GetTargets();
         }
 
         public override void OnAttacked(float damage)

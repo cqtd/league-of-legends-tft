@@ -287,6 +287,7 @@ GameObject:
   - component: {fileID: 43317127}
   - component: {fileID: 43317126}
   - component: {fileID: 43317129}
+  - component: {fileID: 43317131}
   - component: {fileID: 43317130}
   - component: {fileID: 43317125}
   m_Layer: 0
@@ -384,13 +385,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 91b681c4e5934fe1b2e6bf1572317449, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  tier: 1
-  team: 300
+  initialTier: 3
+  initialTeam: 200
   speed: 200
   velocityParameter: 0.008
-  missileSpeed: 2
   unitData: {fileID: 11400000, guid: 61d7fb7415633124f9060692507008e7, type: 2}
-  prefabBullet: {fileID: 2409263350888383046, guid: b036b392d031aa348876bd42d847e43b, type: 3}
   uiOffset: 1.2
 --- !u!54 &43317130
 Rigidbody:
@@ -408,6 +407,20 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 116
   m_CollisionDetection: 0
+--- !u!114 &43317131
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 43317124}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a60e9ac846bd42a980502073782ad714, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  bulletPrefab: {fileID: 2409263350888383046, guid: b036b392d031aa348876bd42d847e43b, type: 3}
+  owner: {fileID: 43317129}
 --- !u!4 &57124468 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4478303445411596, guid: 2e0f1312996d68349933ef1d0445cd09, type: 3}
@@ -804,15 +817,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7b1fe9c5968176f498262deffa9e775e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  tier: 1
-  team: 100
+  initialTier: 1
+  initialTeam: 100
   speed: 350
   velocityParameter: 0.008
-  missileSpeed: 1
   unitData: {fileID: 11400000, guid: ad92cd20b7ea4274d801b710ad7eac64, type: 2}
-  prefabBullet: {fileID: 0}
   uiOffset: 1
   threshold: 0.10000000149011612
+  skill: {fileID: 11400000, guid: 25cf7c65863727c4d8eb06ba38bcf2f8, type: 2}
 --- !u!136 &280051524
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -1242,6 +1254,7 @@ GameObject:
   - component: {fileID: 437187311}
   - component: {fileID: 437187310}
   - component: {fileID: 437187308}
+  - component: {fileID: 437187314}
   - component: {fileID: 437187313}
   - component: {fileID: 437187309}
   m_Layer: 0
@@ -1263,13 +1276,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 91b681c4e5934fe1b2e6bf1572317449, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  tier: 1
-  team: 300
+  initialTier: 1
+  initialTeam: 200
   speed: 200
   velocityParameter: 0.008
-  missileSpeed: 2
   unitData: {fileID: 11400000, guid: 4e38fada0bfcf0a448ac5e08a7296472, type: 2}
-  prefabBullet: {fileID: 2409263350888383046, guid: b036b392d031aa348876bd42d847e43b, type: 3}
   uiOffset: 1.2
 --- !u!65 &437187309
 BoxCollider:
@@ -1363,6 +1374,20 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 116
   m_CollisionDetection: 0
+--- !u!114 &437187314
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 437187307}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a60e9ac846bd42a980502073782ad714, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  bulletPrefab: {fileID: 2409263350888383046, guid: b036b392d031aa348876bd42d847e43b, type: 3}
+  owner: {fileID: 437187308}
 --- !u!4 &440963516 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4316448374051412, guid: 2ee43f6acf07a194eb588a7dd5bc1c5b, type: 3}
@@ -1474,7 +1499,7 @@ Canvas:
   m_OverrideSorting: 0
   m_OverridePixelPerfect: 0
   m_SortingBucketNormalizedSize: 0
-  m_AdditionalShaderChannelsFlag: 0
+  m_AdditionalShaderChannelsFlag: 25
   m_SortingLayerID: 0
   m_SortingOrder: 0
   m_TargetDisplay: 0
@@ -1700,6 +1725,7 @@ GameObject:
   - component: {fileID: 884041698}
   - component: {fileID: 884041697}
   - component: {fileID: 884041695}
+  - component: {fileID: 884041701}
   - component: {fileID: 884041700}
   - component: {fileID: 884041696}
   m_Layer: 0
@@ -1721,13 +1747,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 91b681c4e5934fe1b2e6bf1572317449, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  tier: 1
-  team: 300
+  initialTier: 2
+  initialTeam: 200
   speed: 200
   velocityParameter: 0.008
-  missileSpeed: 2
   unitData: {fileID: 11400000, guid: 4efeff8336d2b0b4bac779071ce24462, type: 2}
-  prefabBullet: {fileID: 2409263350888383046, guid: b036b392d031aa348876bd42d847e43b, type: 3}
   uiOffset: 1.2
 --- !u!65 &884041696
 BoxCollider:
@@ -1821,6 +1845,20 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 116
   m_CollisionDetection: 0
+--- !u!114 &884041701
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 884041694}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a60e9ac846bd42a980502073782ad714, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  bulletPrefab: {fileID: 2409263350888383046, guid: b036b392d031aa348876bd42d847e43b, type: 3}
+  owner: {fileID: 884041695}
 --- !u!4 &895282788 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4965978922172990, guid: 4f49c09706dbf4a4e99dc6a51fab25cc, type: 3}
@@ -4456,15 +4494,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7b1fe9c5968176f498262deffa9e775e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  tier: 1
-  team: 100
+  initialTier: 1
+  initialTeam: 100
   speed: 350
   velocityParameter: 0.008
-  missileSpeed: 1
   unitData: {fileID: 11400000, guid: 510dacbc16be3304595cd6ca040be88a, type: 2}
-  prefabBullet: {fileID: 0}
   uiOffset: 1
   threshold: 0.10000000149011612
+  skill: {fileID: 11400000, guid: 25cf7c65863727c4d8eb06ba38bcf2f8, type: 2}
 --- !u!54 &2110171880
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -4553,7 +4590,7 @@ Canvas:
   m_OverrideSorting: 1
   m_OverridePixelPerfect: 0
   m_SortingBucketNormalizedSize: 0
-  m_AdditionalShaderChannelsFlag: 0
+  m_AdditionalShaderChannelsFlag: 25
   m_SortingLayerID: 0
   m_SortingOrder: 10
   m_TargetDisplay: 0

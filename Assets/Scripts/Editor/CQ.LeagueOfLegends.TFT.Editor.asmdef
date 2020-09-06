@@ -1,0 +1,18 @@
+{
+    "name": "CQ.LeagueOfLegends.TFT.Editor",
+    "references": [
+        "GUID:831f2e72290a71c438ee1d96653f0ff3",
+        "GUID:146f6421205c9d242806a72eb48a1630"
+    ],
+    "includePlatforms": [
+        "Editor"
+    ],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}
