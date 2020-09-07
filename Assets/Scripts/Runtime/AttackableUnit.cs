@@ -63,10 +63,6 @@ namespace CQ.LeagueOfLegends.TFT
 		public int initialTier = 1;
 		public int initialTeam = 100;
 
-		[Header("Pawn Control")]
-		public float speed = 350;
-		public float velocityParameter = 0.008f;
-
 		[Header("Data Binder")]
 		public UnitData unitData;
 		
@@ -95,6 +91,8 @@ namespace CQ.LeagueOfLegends.TFT
 		
 		[NonSerialized] float health;
 		[NonSerialized] float mana;
+		
+		[NonSerialized] float speedFactor = 1.0f;
 		
 		public int Tier { get; protected set; }
 		public int Team { get; protected set; }
@@ -203,13 +201,24 @@ namespace CQ.LeagueOfLegends.TFT
 			return result;
 		}
 
+		public float GetMovementSpeed()
+		{
+			float result = unitData.movementSpeed.Get(Tier);
+
+			return result * speedFactor;
+		}
+
+		public void SetMovementFactor(float value)
+		{
+			this.speedFactor = value;
+		}
+
 		#endregion
 
 		#region Unity Events
 
 		void Awake()
 		{
-			// ObjectManager.Add(this);
 			rb = GetComponent<Rigidbody>();
 			col = GetComponent<Collider>();
 			ren = GetComponent<Renderer>();
@@ -226,9 +235,6 @@ namespace CQ.LeagueOfLegends.TFT
 		{
 			activeUnits.Add(this);
 			onActivationChanged.Invoke(this, true);
-			
-			
-			// CanvasManager.NameTagsManager.Register(this);
 		}
 
 		void OnDisable()
@@ -462,8 +468,7 @@ namespace CQ.LeagueOfLegends.TFT
 				var direction = gap;
 				direction.Normalize();
 
-				rb.velocity = direction * speed * velocityParameter;
-
+				rb.velocity = direction * GetMovementSpeed();
 			}
 		}
 
@@ -492,11 +497,8 @@ namespace CQ.LeagueOfLegends.TFT
 			col.enabled = false;
 			
 			onUnitDead.Invoke(this);
-			// ObjectManager.Remove(this);
 			
 			StartCoroutine(BookDestroy());
-			// gameObject.SetActive(false);
-			// Destroy(gameObject);
 		}
 
 		IEnumerator BookDestroy()

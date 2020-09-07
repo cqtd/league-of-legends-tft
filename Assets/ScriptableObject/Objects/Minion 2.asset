@@ -158,3 +158,12 @@ MonoBehaviour:
     - 6
     - 7
     - 8
+  movementSpeed:
+    defaultValue: 3
+    valuePerLevel: 0
+    useValuePerLevel: 1
+    definedValues:
+    - 3.5
+    - 4.2000003
+    - 4.9
+    - 5.6

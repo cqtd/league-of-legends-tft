@@ -28,5 +28,7 @@ namespace CQ.LeagueOfLegends.TFT
 
 		public FloatProperty manaPerAttack = (10f, 2);
 		public FloatProperty manaPerHit = (5f, 3);
+
+		public FloatProperty movementSpeed = (3.5f, 0);
 	}
 }
