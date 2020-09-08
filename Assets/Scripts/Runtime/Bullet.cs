@@ -1,24 +1,8 @@
-﻿using System;
-using UnityEngine;
+﻿using UnityEngine;
 
 namespace CQ.LeagueOfLegends.TFT
 {
-    public class DamageContext
-    {
-        public float damage;
-    }
-
-    public class BulletContext
-    {
-        public DamageContext damage;
-        public AttackableUnit owner;
-        public AttackableUnit target;
-        public Vector3 startPos;
-        public Vector3 direction;
-        public float missileSpeed;
-    }
-    
-	public class Bullet : MonoBehaviour
+    public class Bullet : MonoBehaviour
 	{
         Vector3 direction = new Vector3(0, 0, 1);
         AttackableUnit followTarget = null;

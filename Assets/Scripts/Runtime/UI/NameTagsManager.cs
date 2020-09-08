@@ -77,7 +77,6 @@ namespace CQ.LeagueOfLegends.TFT.UI
 				return;
 			}
 
-
 			{
 				// Debug.Log(inst.name);
 				inst.beforeDestroy = true;
@@ -97,7 +96,7 @@ namespace CQ.LeagueOfLegends.TFT.UI
 				inst.healthBar.value = unit.GetHealth() / unit.GetMaxHealth();
 				inst.manaBar.value = unit.GetMana() / unit.GetMaxMana();
 
-				var scrPos = Camera.main.WorldToScreenPoint(unit.transform.position + unit.uiOffset * Vector3.up);
+				var scrPos = Camera.main.WorldToScreenPoint(unit.IndicatorPos);
 				inst.transform.position = scrPos;
 			}
 			
@@ -110,7 +109,7 @@ namespace CQ.LeagueOfLegends.TFT.UI
 				inst.manaBar.fillAmount = unit.GetMana() / unit.GetMaxMana();
 				inst.tier.text = unit.Tier.ToString();
 
-				var scrPos = Camera.main.WorldToScreenPoint(unit.transform.position + unit.uiOffset * Vector3.up);
+				var scrPos = Camera.main.WorldToScreenPoint(unit.IndicatorPos);
 				inst.transform.position = scrPos;
 			}
 		}

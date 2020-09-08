@@ -11,11 +11,19 @@ namespace CQ.LeagueOfLegends.TFT
 		
 		public override void Use(List<AttackableUnit> targets)
 		{
+			var critPoss = owner.GetSkillCriticalPossibility();
+			bool isCrit = owner.GetRandom.Next(100) <= critPoss * 100;
+			float critMultiply = 1.0f;
+			if (isCrit) critMultiply = owner.unitData.criticalMultiplier.Get(owner.Tier);
+			
 			foreach (AttackableUnit target in targets)
 			{
 				target.TakeDamage(new DamageContext()
 				{
 					damage = skillDamage,
+					isCritical = isCrit,
+					criticalMultiplier = critMultiply,
+					damageType = EDamageType.AP,
 				});
 			}	
 		}

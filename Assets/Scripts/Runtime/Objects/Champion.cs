@@ -100,5 +100,30 @@ namespace CQ.LeagueOfLegends.TFT
             lastAttacked = Time.time;
             mat.color = Color.red;
         }
+
+        public DamageContext GetSkillDamageContext()
+        {
+            var critPoss = unitData.criticalSkillPossibility.Get(Tier);
+            bool isCrit = random.Next(100) <= critPoss * 100;
+            float critMultiply = 1.0f;
+            if (isCrit) critMultiply = unitData.criticalMultiplier.Get(Tier);
+
+            var damage = new DamageContext()
+            {
+                damage = GetAttackDamage(),
+                isCritical = isCrit,
+                criticalMultiplier = critMultiply,
+                damageType = EDamageType.AD,
+            };
+
+            return damage;
+        }
+
+        public float GetSkillCriticalPossibility()
+        {
+            var result = unitData.criticalSkillPossibility.Get(Tier);
+
+            return result;
+        }
     }
 }

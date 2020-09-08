@@ -3,11 +3,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.Tilemaps;
+using Random = UnityEngine.Random;
 
 namespace CQ.LeagueOfLegends.TFT
 {
-	public class UnitEvent : UnityEvent<AttackableUnit> { }
-	public class UnitBoolEvent : UnityEvent<AttackableUnit, bool> { }
+	using Events;
 	
 	[DefaultExecutionOrder(100)]
 	public class AttackableUnit : MonoBehaviour
@@ -59,15 +60,14 @@ namespace CQ.LeagueOfLegends.TFT
 		
 		#endregion
 
-		[Header("Instance Data")]
+		[Header("데이터")]
+		public UnitData unitData;
 		public int initialTier = 1;
 		public int initialTeam = 100;
 
-		[Header("Data Binder")]
-		public UnitData unitData;
-		
-		[Header("UI")]
-		public float uiOffset = 0.8f;
+		public Vector3 IndicatorPos {
+			get { return topHead.position; }
+		}
 
 		public bool IsTargetable {
 			get
@@ -84,7 +84,8 @@ namespace CQ.LeagueOfLegends.TFT
 		[NonSerialized] Rigidbody rb;
 		[NonSerialized] Collider col;
 		[NonSerialized] Renderer ren;
-		
+		[NonSerialized] Transform topHead;
+
 		[NonSerialized] public bool roundStarted;
 		[NonSerialized] public bool IsInvalid;
 		[NonSerialized] public bool IsMelee;
@@ -93,6 +94,11 @@ namespace CQ.LeagueOfLegends.TFT
 		[NonSerialized] float mana;
 		
 		[NonSerialized] float speedFactor = 1.0f;
+		[NonSerialized] protected System.Random random;
+		
+		public System.Random GetRandom {
+			get { return this.random; }
+		}
 		
 		public int Tier { get; protected set; }
 		public int Team { get; protected set; }
@@ -322,6 +328,22 @@ namespace CQ.LeagueOfLegends.TFT
 			buffManager.Initialize();
 			
 			components.Add(buffManager);
+			topHead = GetTopHeadBone();
+			
+			random = new System.Random(GetHashCode());
+		}
+
+		Transform GetTopHeadBone()
+		{
+			foreach (Transform o in transform)
+			{
+				if (string.CompareOrdinal(o.name, "TopHead") == 0)
+				{
+					return o;
+				}
+			}
+
+			return null;
 		}
 
 		#region Attack Logic
@@ -376,12 +398,21 @@ namespace CQ.LeagueOfLegends.TFT
 			
 			Vector3 direction = (target.transform.position - transform.position).normalized;
 
+			var critPoss = unitData.criticalPossibility.Get(Tier);
+			bool isCrit = random.Next(100) <= critPoss * 100;
+			float critMultiply = 1.0f;
+			if (isCrit) critMultiply = unitData.criticalMultiplier.Get(Tier);
+
 			BulletContext ctx = new BulletContext()
 			{
 				damage = new DamageContext()
 				{
 					damage = GetAttackDamage(),
+					isCritical = isCrit,
+					criticalMultiplier = critMultiply,
+					damageType = EDamageType.AD,
 				},
+				
 				owner = this,
 				startPos = transform.position,
 				target = target,
