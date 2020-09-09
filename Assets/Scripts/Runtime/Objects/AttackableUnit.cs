@@ -111,7 +111,8 @@ namespace CQ.LeagueOfLegends.TFT
 		#region Callback Action
 
 		public UnityAction<BulletContext> onAttack;
-		
+		public UnityAction<DamageContext> onDamaged;
+
 		#endregion
 
 		#region Character Data
@@ -544,7 +545,10 @@ namespace CQ.LeagueOfLegends.TFT
 
 		public void TakeDamage(DamageContext context)
 		{
+			context.pos = ren.bounds.center;
+			
 			OnAttacked(context.damage);
+			onDamaged?.Invoke(context);
 		}
 	}
 }

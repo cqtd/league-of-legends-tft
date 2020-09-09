@@ -1,7 +1,9 @@
 {
     "name": "CQ.LeagueOfLegends.TFT.UI",
     "references": [
-        "GUID:831f2e72290a71c438ee1d96653f0ff3"
+        "GUID:831f2e72290a71c438ee1d96653f0ff3",
+        "GUID:389bd4688a7aa984b8def6ae87b8cb42",
+        "GUID:62d79080604b27a4aa4f45b04d3ded1a"
     ],
     "includePlatforms": [],
     "excludePlatforms": [],

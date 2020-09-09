@@ -7,7 +7,7 @@ namespace CQ.LeagueOfLegends.TFT.UI
 	{
 		static CanvasManager instance;
 
-		public NameTagsManager nametags;
+		public UnitIndicatorCanvas nametags;
 
 		void Awake()
 		{
@@ -15,7 +15,7 @@ namespace CQ.LeagueOfLegends.TFT.UI
 			DontDestroyOnLoad(this.gameObject);
 		}
 
-		public static NameTagsManager NameTagsManager {
+		public static UnitIndicatorCanvas UnitIndicatorCanvas {
 			get
 			{
 				return instance.nametags;

@@ -4,7 +4,7 @@ using UnityEngine.UI;
 
 namespace CQ.LeagueOfLegends.TFT.UI
 {
-	public class Indicator : MonoBehaviour
+	public sealed class UnitIndicator : UIContent
 	{
 		public Text tier;
 		public Text healthPoint;
@@ -21,6 +21,8 @@ namespace CQ.LeagueOfLegends.TFT.UI
 		int MaxHealth;
 		int prevHealth;
 
+		AttackableUnit target;
+
 		public void SetHealth(float cur, float max)
 		{
 			bool dirty = currentHealth != (int) cur ||
@@ -33,7 +35,6 @@ namespace CQ.LeagueOfLegends.TFT.UI
 				MaxHealth = (int) max;
 				
 				healthPoint.text = string.Format(format, cur, max);
-				// healthBar.fillAmount = cur / max;
 				healthBar.fillAmount = (float)currentHealth / MaxHealth;
 
 				if (!animating)
@@ -74,6 +75,26 @@ namespace CQ.LeagueOfLegends.TFT.UI
 			}
 
 			animating = false;
+		}
+
+		public override void Init(AttackableUnit unit)
+		{
+			this.target = unit;
+
+			base.Init(unit);
+		}
+
+		public override void Repaint()
+		{
+			SetHealth(target.GetHealth(), target.GetMaxHealth());
+			
+			manaBar.fillAmount = target.GetMana() / target.GetMaxMana();
+			tier.text = target.Tier.ToString();
+		}
+
+		public override void Refresh()
+		{
+			
 		}
 	}
 }
