@@ -463,13 +463,14 @@ namespace CQ.LeagueOfLegends.TFT
 				}
 			}
 
-			var enemies = ObjectManager.GetEnemies(this.Team);
-			var min = float.MaxValue;
+			List<AttackableUnit> enemies = ObjectManager.GetEnemies(this.Team);
+			
+			float min = float.MaxValue;
 			AttackableUnit closest = null;
 
 			foreach (AttackableUnit enemy in enemies)
 			{
-				var dist = Vector3.SqrMagnitude(enemy.transform.position - transform.position);
+				float dist = Vector3.SqrMagnitude(enemy.transform.position - transform.position);
 				if (min > dist)
 				{
 					min = dist;
