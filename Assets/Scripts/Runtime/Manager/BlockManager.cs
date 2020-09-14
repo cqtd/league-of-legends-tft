@@ -1,6 +1,5 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
-using UnityEditor.SceneManagement;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -36,7 +35,9 @@ namespace CQ.LeagueOfLegends.TFT
 				target.transform.SetSiblingIndex(i + iterator * 14);
 			}
 
-			EditorSceneManager.MarkSceneDirty(SceneManager.GetActiveScene());
+			#if UNITY_EDITOR
+			UnityEditor.SceneManagement.EditorSceneManager.MarkSceneDirty(SceneManager.GetActiveScene());
+			#endif
 		}
 	}
 }
