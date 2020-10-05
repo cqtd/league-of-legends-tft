@@ -9,15 +9,15 @@ namespace CQ.LeagueOfLegends.TFT
 {
 	public class IntroManager : MonoBehaviour
 	{
-		[SerializeField] public TMP_InputField displayName = default;
-		[SerializeField] public TMP_InputField roomIndex = default;
-		[SerializeField] public Button createSession = default;
-		[SerializeField] public Button joinSession = default;
+		[SerializeField] TMP_InputField displayName = default;
+		[SerializeField] TMP_InputField roomIndex = default;
+		[SerializeField] Button createSession = default;
+		[SerializeField] Button joinSession = default;
 		[SerializeField] CanvasGroup canvasGroup = default;
 		[SerializeField] float duration = 0.6f;
 
-		public UnityAction<string, string> onCreateSession;
-		public UnityAction<string, string> onJoinSession;
+		[NonSerialized] public UnityAction<string, string> onCreateSession;
+		[NonSerialized] public UnityAction<string, string> onJoinSession;
 
 		void OnEnable()
 		{
@@ -58,10 +58,24 @@ namespace CQ.LeagueOfLegends.TFT
 			});
 		}
 
-		public void FadeOut(Action onComplete)
+		public void FadeIn(Action onComplete = null, float defaultvalue = 0)
 		{
+			canvasGroup.alpha = defaultvalue;
+			gameObject.SetActive(true);
+			
+			Tweener tween = canvasGroup.DOFade(1.0f, duration);
+
+			if (onComplete != null)
+				tween.onComplete += new TweenCallback(onComplete);
+		}
+
+		public void FadeOut(Action onComplete = null, float defaultValue = 1)
+		{
+			canvasGroup.alpha = defaultValue;
 			Tweener tween = canvasGroup.DOFade(0.0f, duration);
-			tween.onComplete += new TweenCallback(onComplete);
+
+			if (onComplete != null)
+				tween.onComplete += new TweenCallback(onComplete);
 		}
 		
 		void SaveLocalData()

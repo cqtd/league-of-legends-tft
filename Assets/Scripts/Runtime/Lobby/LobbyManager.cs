@@ -1,24 +1,21 @@
-﻿using System;
-using DG.Tweening;
+﻿using DG.Tweening;
 using Photon.Pun;
 using Photon.Realtime;
+using TMPro;
 using UnityEngine;
 using UnityEngine.Assertions;
+using UnityEngine.UI;
 
 namespace CQ.LeagueOfLegends.TFT
 {
     public class LobbyManager : MonoBehaviourPunCallbacks
     {
-        public enum eConnectType
-        {
-            Create,
-            Join,
-        }
+        [SerializeField] LobbyPlayerCell me = default;
+        [SerializeField] LobbyTeamCell[] teammates = new LobbyTeamCell[0];
         
-        [SerializeField] public LobbyPlayerCell me = default;
-        [SerializeField] public LobbyTeamCell[] teammates = new LobbyTeamCell[0];
+        [SerializeField] Button matchStart = default;
+        [SerializeField] TextMeshProUGUI roomTitle = default;
 
-        eConnectType connectType;
         string roomID;
         string playerName;
         
@@ -37,15 +34,9 @@ namespace CQ.LeagueOfLegends.TFT
             
             Debug.Log("Create Session");
 
-            connectType = eConnectType.Create;
             options = new RoomOptions {MaxPlayers = 8};
-
-            var setting = new AppSettings()
-            {
-                
-            };
-            
-            PhotonNetwork.ConnectUsingSettings();
+            bool result = PhotonNetwork.CreateRoom(roomID, options);
+            Assert.IsTrue(result);
         }
 
         public void JoinSession(string roomName, string playerName)
@@ -59,9 +50,9 @@ namespace CQ.LeagueOfLegends.TFT
             
             Debug.Log("Join Session");
             
-            connectType = eConnectType.Join;
-            
-            PhotonNetwork.ConnectUsingSettings();
+
+            bool result = PhotonNetwork.JoinRoom(roomID);
+            Assert.IsTrue(result);
         }
 
         public override void OnJoinedLobby()
@@ -111,29 +102,19 @@ namespace CQ.LeagueOfLegends.TFT
                 teammates[i].SetVacant();
             }
 
+            roomTitle.text = roomID;
+            
+            matchStart.onClick.RemoveAllListeners();
+            matchStart.onClick.AddListener(OnMatchStart);
+
             FadeIn();
         }
 
-        public override void OnConnectedToMaster()
+        void OnMatchStart()
         {
-            base.OnConnectedToMaster();
-
-            if (connectType == eConnectType.Create)
-            {
-                bool result = PhotonNetwork.CreateRoom(roomID, options);
-                Assert.IsTrue(result);
-            }
-            else if (connectType == eConnectType.Join)
-            {
-                bool result = PhotonNetwork.JoinRoom(roomID);
-                Assert.IsTrue(result);
-            }
-            else
-            {
-                throw new Exception("Undefined connect type");
-            }
+            Debug.Log("Match Start");
             
-            Debug.Log("OnConnectedToMaster");
+            // 게임 시작을 통지
         }
 
         void FadeIn()

@@ -1,30 +1,31 @@
-﻿using UnityEngine;
+﻿using Photon.Pun;
+using UnityEngine;
 
 namespace CQ.LeagueOfLegends.TFT
 {
-	public class Bootstrap : MonoBehaviour
+	public class Bootstrap : MonoBehaviourPunCallbacks
 	{
 		[SerializeField] IntroManager intro = default;
 		[SerializeField] LobbyManager lobby = default;
 
 		void Awake()
 		{
+			// 패널들 꺼놓기
 			intro.gameObject.SetActive(false);
 			lobby.gameObject.SetActive(false);
 			
+			// 포톤 접속 시도
+			PhotonNetwork.ConnectUsingSettings();
+			
+			// 이벤트 등록
 			intro.RegisterEvents();
 			
 			intro.onCreateSession += OnCreateSession;
 			intro.onJoinSession += OnJoinSession;
 
+			// 기초 세팅
 			Application.targetFrameRate = 60;
 			Screen.SetResolution(1600, 900, false);
-		}
-
-		void Start()
-		{
-			// 인트로 패널 보이기
-			intro.gameObject.SetActive(true);
 		}
 
 		/// <summary>
@@ -41,6 +42,19 @@ namespace CQ.LeagueOfLegends.TFT
 		void OnJoinSession(string roomName, string displayName)
 		{
 			lobby.JoinSession(roomName, displayName);
+		}
+
+		/// <summary>
+		/// 포톤 네트워크 커넥션 콜백
+		/// </summary>
+		public override void OnConnectedToMaster()
+		{
+			base.OnConnectedToMaster();
+
+			// 인트로 패널 활성화
+			intro.FadeIn();
+			
+			Debug.Log("OnConnectedToMaster");
 		}
 
 		[ContextMenu("Transfer")]
