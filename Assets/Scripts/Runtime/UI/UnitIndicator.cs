@@ -27,7 +27,7 @@ namespace CQ.LeagueOfLegends.TFT.UI
 		{
 			bool dirty = currentHealth != (int) cur ||
 			             MaxHealth != (int) max;
-
+			
 			if (dirty)
 			{
 				prevHealth = currentHealth;

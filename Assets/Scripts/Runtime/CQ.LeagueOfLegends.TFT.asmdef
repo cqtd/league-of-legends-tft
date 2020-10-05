@@ -1,3 +1,22 @@
-﻿{
-	"name": "CQ.LeagueOfLegends.TFT"
+{
+    "name": "CQ.LeagueOfLegends.TFT",
+    "references": [
+        "GUID:57c32fc907df0f54e8e6e8f0d2488336",
+        "GUID:08a110bd598f7604f9519c2d7e1fb3cc",
+        "GUID:831409e8f9d13b5479a3baef9822ad34",
+        "GUID:a738238285a7a8246af046cbf977522f",
+        "GUID:a10ff188cbfd201409863c062b118e1d",
+        "GUID:6055be8ebefd69e48b49212b09b47b2f",
+        "GUID:389bd4688a7aa984b8def6ae87b8cb42",
+        "GUID:62d79080604b27a4aa4f45b04d3ded1a"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
 }
