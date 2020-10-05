@@ -1,7 +1,9 @@
-﻿namespace CQ.LeagueOfLegends.TFT
+﻿using Photon.Realtime;
+
+namespace CQ.LeagueOfLegends.TFT
 {
 	public sealed class LobbyPlayerCell : LobbyCellBase
 	{
-        
+
 	}
 }

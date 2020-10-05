@@ -1,90 +1,56 @@
-﻿using DG.Tweening;
-using TMPro;
-using UnityEngine;
-using UnityEngine.UI;
+﻿using UnityEngine;
 
 namespace CQ.LeagueOfLegends.TFT
 {
 	public class Bootstrap : MonoBehaviour
 	{
-		[Header("Intro")] 
-		
-		[SerializeField] GameObject intro = default;
-		[SerializeField] TMP_InputField displayName = default;
-		[SerializeField] TMP_InputField roomIndex = default;
-		[SerializeField] Button createSession = default;
-		[SerializeField] Button joinSession = default;
-
-		[Space] 
-		[Header("Lobby")] 
-		
+		[SerializeField] IntroManager intro = default;
 		[SerializeField] LobbyManager lobby = default;
 
 		void Awake()
 		{
 			intro.gameObject.SetActive(false);
 			lobby.gameObject.SetActive(false);
+			
+			intro.RegisterEvents();
+			
+			intro.onCreateSession += OnCreateSession;
+			intro.onJoinSession += OnJoinSession;
+
+			Application.targetFrameRate = 60;
+			Screen.SetResolution(1600, 900, false);
 		}
 
 		void Start()
 		{
-			LoadLocalData();
-			
-			createSession.onClick.AddListener(OnCreateSession);
-			joinSession.onClick.AddListener(OnJoinSession);
-			
+			// 인트로 패널 보이기
 			intro.gameObject.SetActive(true);
 		}
 
-		void OnDisable()
+		/// <summary>
+		/// 방 생성 버튼 콜백
+		/// </summary>
+		void OnCreateSession(string roomName, string displayName)
 		{
-			SaveLocalData();
+			lobby.CreateSession(roomName, displayName);
 		}
 
-		void SaveLocalData()
+		/// <summary>
+		/// 방 입장 버튼 콜백
+		/// </summary>
+		void OnJoinSession(string roomName, string displayName)
 		{
-			PlayerPrefs.SetString("cq.tft.bootstrap.display.name", displayName.text);
-			PlayerPrefs.SetString("cq.tft.bootstrap.room.index", roomIndex.text);
-		}
-
-		void LoadLocalData()
-		{
-			displayName.text = PlayerPrefs.GetString("cq.tft.bootstrap.display.name", "기본닉네임");
-			roomIndex.text = PlayerPrefs.GetString("cq.tft.bootstrap.room.index", "5324");
-		}
-
-		void OnCreateSession()
-		{
-			SaveLocalData();
-
-			var cg = intro.GetComponent<CanvasGroup>();
-			var tween = cg.DOFade(0.0f, 0.5f);
-			tween.onComplete += () =>
-			{
-				intro.gameObject.SetActive(false);
-
-				lobby.CreateSession(roomIndex.text);
-			};
-		}
-
-		void OnJoinSession()
-		{
-			SaveLocalData();
-			
-			var cg = intro.GetComponent<CanvasGroup>();
-			var tween = cg.DOFade(0.0f, 0.5f);
-			tween.onComplete += () =>
-			{
-				intro.gameObject.SetActive(false);
-
-				lobby.JoinSession(roomIndex.text);
-			};
+			lobby.JoinSession(roomName, displayName);
 		}
 
 		[ContextMenu("Transfer")]
 		void ContextMenu()
 		{
-
+			// var im = intro.GetComponent<IntroManager>();
+			// im.displayName = this.displayName;
+			// im.roomIndex = this.roomIndex;
+			// im.createSession = this.createSession;
+			// im.joinSession = this.joinSession;
 		}
 	}
 }

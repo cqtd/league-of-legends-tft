@@ -348,7 +348,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 982bc4506a564d12a973740807e977f6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  intro: {fileID: 886794972}
+  intro: {fileID: 886794977}
   displayName: {fileID: 556148091}
   roomIndex: {fileID: 1304675750}
   createSession: {fileID: 1244284033}
@@ -1058,6 +1058,7 @@ GameObject:
   - component: {fileID: 886794975}
   - component: {fileID: 886794974}
   - component: {fileID: 886794976}
+  - component: {fileID: 886794977}
   m_Layer: 5
   m_Name: Intro
   m_TagString: Untagged
@@ -1137,6 +1138,24 @@ CanvasGroup:
   m_Interactable: 1
   m_BlocksRaycasts: 1
   m_IgnoreParentGroups: 0
+--- !u!114 &886794977
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 886794972}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 071bdf01c93f4312ad3306a2726de24e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  displayName: {fileID: 556148091}
+  roomIndex: {fileID: 1304675750}
+  createSession: {fileID: 1244284033}
+  joinSession: {fileID: 1682797862}
+  canvasGroup: {fileID: 886794976}
+  duration: 0.6
 --- !u!1 &918766395
 GameObject:
   m_ObjectHideFlags: 0
