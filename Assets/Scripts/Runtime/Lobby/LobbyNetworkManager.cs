@@ -1,15 +1,20 @@
 ﻿using Photon.Pun;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 namespace CQ.LeagueOfLegends.TFT
 {
-	public class Bootstrap : MonoBehaviourPunCallbacks
+	public class LobbyNetworkManager : MonoBehaviourPunCallbacks
 	{
 		[SerializeField] IntroManager intro = default;
 		[SerializeField] LobbyManager lobby = default;
 
+		static LobbyNetworkManager instance;
+
 		void Awake()
 		{
+			instance = this;
+			
 			// 패널들 꺼놓기
 			intro.gameObject.SetActive(false);
 			lobby.gameObject.SetActive(false);
@@ -57,14 +62,16 @@ namespace CQ.LeagueOfLegends.TFT
 			Debug.Log("OnConnectedToMaster");
 		}
 
-		[ContextMenu("Transfer")]
-		void ContextMenu()
+		[PunRPC]
+		private void NetworkedLoadScene(string sceneName)
 		{
-			// var im = intro.GetComponent<IntroManager>();
-			// im.displayName = this.displayName;
-			// im.roomIndex = this.roomIndex;
-			// im.createSession = this.createSession;
-			// im.joinSession = this.joinSession;
+			SceneManager.LoadSceneAsync(sceneName, LoadSceneMode.Additive);
+		}
+
+		public static void LoadLevel(string name)
+		{
+			PhotonNetwork.OpCleanRpcBuffer(instance.photonView);
+			instance.photonView.RPC("NetworkedLoadScene", RpcTarget.All, name);
 		}
 	}
 }

@@ -1,4 +1,5 @@
-﻿using DG.Tweening;
+﻿using System.Collections;
+using DG.Tweening;
 using Photon.Pun;
 using Photon.Realtime;
 using TMPro;
@@ -15,6 +16,8 @@ namespace CQ.LeagueOfLegends.TFT
         
         [SerializeField] Button matchStart = default;
         [SerializeField] TextMeshProUGUI roomTitle = default;
+        
+        TextMeshProUGUI matchStartText = default;
 
         string roomID = default;
         string playerName = default;
@@ -38,7 +41,7 @@ namespace CQ.LeagueOfLegends.TFT
             Debug.Log("Join Session");
 
             Prepare_Internal(room, player);
-            
+
             // bool result = PhotonNetwork.JoinRoom(roomID);
             bool result = PhotonNetwork.JoinOrCreateRoom(roomID, options, TypedLobby.Default);
             Assert.IsTrue(result);
@@ -92,10 +95,11 @@ namespace CQ.LeagueOfLegends.TFT
         public override void OnPlayerEnteredRoom(Player newPlayer)
         {
             base.OnPlayerEnteredRoom(newPlayer);
+
+            StartCoroutine(LazyRepaintRoomList_Internal(0.5f));
             
-            RepaintRoomList_Internal();
+            // RepaintRoomList_Internal();
             Logger.Verbose($"플레이어 입장 : {newPlayer.ActorNumber}:{newPlayer.NickName}");
-            
         }
 
         public override void OnPlayerLeftRoom(Player otherPlayer)
@@ -109,8 +113,31 @@ namespace CQ.LeagueOfLegends.TFT
         void OnMatchStart()
         {
             Debug.Log("Match Start");
+            matchStart.interactable = false;
+            matchStartText = matchStart.transform.GetChild(0).GetComponent<TextMeshProUGUI>();
             
             // 게임 시작을 통지
+            StartCoroutine(LoadLevel());
+        }
+
+        IEnumerator LoadLevel()
+        {
+            Logger.Verbose("3");
+            matchStartText.SetText("삼");
+            yield return new WaitForSeconds(1);
+            
+            Logger.Verbose("2");
+            matchStartText.SetText("이");
+            yield return new WaitForSeconds(1);
+            
+            Logger.Verbose("1");
+            matchStartText.SetText("일");
+            yield return new WaitForSeconds(1);
+
+            Camera.main.clearFlags = CameraClearFlags.Skybox;
+            
+            var fade = canvasGroup.DOFade(0.0f, 0.6f);
+            fade.onComplete += () => LobbyNetworkManager.LoadLevel("Arena"); 
         }
         
         void Prepare_Internal(string room, string player)
@@ -128,6 +155,44 @@ namespace CQ.LeagueOfLegends.TFT
 
         void RepaintRoomList_Internal()
         {
+            Room room = PhotonNetwork.CurrentRoom;
+
+            int index = 0;
+            foreach (Player player in room.Players.Values)
+            {
+                if (player.IsLocal)
+                {
+                    me.Initialize(player);
+                }
+                else
+                {
+                    teammates[index].Initialize(player);
+                    index++;
+                }
+            }
+
+            for (int i = index; i < 7; i++)
+            {
+                teammates[i].SetVacant();
+            }
+
+            // 게임 시작 버튼
+            if (PhotonNetwork.LocalPlayer.IsMasterClient)
+            {
+                matchStart.gameObject.SetActive(true);
+            }
+            else
+            {
+                matchStart.gameObject.SetActive(false);
+            }
+            
+            roomTitle.text = roomID;
+        }
+
+        IEnumerator LazyRepaintRoomList_Internal(float delay)
+        {
+            yield return new WaitForSeconds(delay);
+            
             Room room = PhotonNetwork.CurrentRoom;
 
             int index = 0;
