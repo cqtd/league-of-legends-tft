@@ -9,12 +9,17 @@ namespace CQ.LeagueOfLegends.TFT
 {
 	public class IntroManager : MonoBehaviour
 	{
+		[Space(10)]
 		[SerializeField] TMP_InputField displayName = default;
 		[SerializeField] TMP_InputField roomIndex = default;
+		
 		[SerializeField] Button createSession = default;
 		[SerializeField] Button joinSession = default;
+		
 		[SerializeField] CanvasGroup canvasGroup = default;
-		[SerializeField] float duration = 0.6f;
+		
+		[Space(10)]
+		[SerializeField][Range(0.1f, 1.0f)] float duration = 0.6f;
 
 		[NonSerialized] public UnityAction<string, string> onCreateSession;
 		[NonSerialized] public UnityAction<string, string> onJoinSession;
@@ -80,14 +85,14 @@ namespace CQ.LeagueOfLegends.TFT
 		
 		void SaveLocalData()
 		{
-			PlayerPrefs.SetString("cq.tft.bootstrap.display.name", displayName.text);
-			PlayerPrefs.SetString("cq.tft.bootstrap.room.index", roomIndex.text);
+			PlayerPrefs.SetString("cq.tft.intro.display.name", displayName.text);
+			PlayerPrefs.SetString("cq.tft.intro.room.index", roomIndex.text);
 		}
 
 		void LoadLocalData()
 		{
-			displayName.text = PlayerPrefs.GetString("cq.tft.bootstrap.display.name", "기본닉네임");
-			roomIndex.text = PlayerPrefs.GetString("cq.tft.bootstrap.room.index", "5324");
+			displayName.text = PlayerPrefs.GetString("cq.tft.intro.display.name", "기본닉네임");
+			roomIndex.text = PlayerPrefs.GetString("cq.tft.intro.room.index", "5324");
 		}
 	}
 }

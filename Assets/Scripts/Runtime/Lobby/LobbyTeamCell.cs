@@ -1,4 +1,5 @@
-﻿using Photon.Realtime;
+﻿using Photon.Pun;
+using Photon.Realtime;
 
 namespace CQ.LeagueOfLegends.TFT
 {
@@ -14,7 +15,15 @@ namespace CQ.LeagueOfLegends.TFT
 		{
 			base.Initialize(player);
 
-			avatar.gameObject.SetActive(true);
+			// avatar.gameObject.SetActive(true);
+			// if (player.IsMasterClient)
+			// {
+			// 	avatar.SetMaster(true);
+			// }
+			// else
+			// {
+			// 	avatar.SetMaster(false);
+			// }
 		}
 	}
 }

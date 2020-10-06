@@ -1,12 +1,11 @@
 {
-    "name": "CQ.LeagueOfLegends.TFT.UI",
+    "name": "CQ.LeagueOfLegends.TFT.UI.Editor",
     "references": [
-        "GUID:831f2e72290a71c438ee1d96653f0ff3",
-        "GUID:389bd4688a7aa984b8def6ae87b8cb42",
-        "GUID:62d79080604b27a4aa4f45b04d3ded1a",
-        "GUID:6055be8ebefd69e48b49212b09b47b2f"
+        "GUID:146f6421205c9d242806a72eb48a1630"
     ],
-    "includePlatforms": [],
+    "includePlatforms": [
+        "Editor"
+    ],
     "excludePlatforms": [],
     "allowUnsafeCode": false,
     "overrideReferences": false,

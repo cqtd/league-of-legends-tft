@@ -16,42 +16,31 @@ namespace CQ.LeagueOfLegends.TFT
         [SerializeField] Button matchStart = default;
         [SerializeField] TextMeshProUGUI roomTitle = default;
 
-        string roomID;
-        string playerName;
-        
-        RoomOptions options;
-        CanvasGroup cg;
-        
-        public void CreateSession(string roomName, string playerName)
-        {
-            cg = GetComponent<CanvasGroup>();
-            cg.alpha = 0f;
-            
-            gameObject.SetActive(true);
+        string roomID = default;
+        string playerName = default;
 
-            roomID = roomName;
-            this.playerName = playerName;
-            
+        RoomOptions options = default;
+        CanvasGroup canvasGroup = default;
+        
+        public void CreateSession(string room, string player)
+        {
             Debug.Log("Create Session");
 
-            options = new RoomOptions {MaxPlayers = 8};
-            bool result = PhotonNetwork.CreateRoom(roomID, options);
+            Prepare_Internal(room, player);
+            
+            // bool result = PhotonNetwork.CreateRoom(roomID, options);
+            bool result = PhotonNetwork.JoinOrCreateRoom(roomID, options, TypedLobby.Default);
             Assert.IsTrue(result);
         }
 
-        public void JoinSession(string roomName, string playerName)
+        public void JoinSession(string room, string player)
         {
-            cg = GetComponent<CanvasGroup>();
-            cg.alpha = 0f;
-            
-            gameObject.SetActive(true);
-            roomID = roomName;
-            this.playerName = playerName;
-            
             Debug.Log("Join Session");
-            
 
-            bool result = PhotonNetwork.JoinRoom(roomID);
+            Prepare_Internal(room, player);
+            
+            // bool result = PhotonNetwork.JoinRoom(roomID);
+            bool result = PhotonNetwork.JoinOrCreateRoom(roomID, options, TypedLobby.Default);
             Assert.IsTrue(result);
         }
 
@@ -77,15 +66,73 @@ namespace CQ.LeagueOfLegends.TFT
                 }
             }
             
+            // 게임 시작 버튼
+            if (PhotonNetwork.LocalPlayer.IsMasterClient)
+            {
+                matchStart.onClick.RemoveAllListeners();
+                matchStart.onClick.AddListener(OnMatchStart);
+                
+                matchStart.gameObject.SetActive(true);
+            }
+            
             // 룸 설정
+            RepaintRoomList_Internal();
+            
+
+            FadeIn_Internal();
+        }
+
+        public override void OnJoinRoomFailed(short returnCode, string message)
+        {
+            base.OnJoinRoomFailed(returnCode, message);
+            
+            Debug.LogError(message);
+        }
+
+        public override void OnPlayerEnteredRoom(Player newPlayer)
+        {
+            base.OnPlayerEnteredRoom(newPlayer);
+            
+            RepaintRoomList_Internal();
+            Logger.Verbose($"플레이어 입장 : {newPlayer.ActorNumber}:{newPlayer.NickName}");
+            
+        }
+
+        public override void OnPlayerLeftRoom(Player otherPlayer)
+        {
+            base.OnPlayerLeftRoom(otherPlayer);
+            
+            RepaintRoomList_Internal();
+            Logger.Verbose($"플레이어 퇴장 : {otherPlayer.ActorNumber}:{otherPlayer.NickName}");
+        }
+
+        void OnMatchStart()
+        {
+            Debug.Log("Match Start");
+            
+            // 게임 시작을 통지
+        }
+        
+        void Prepare_Internal(string room, string player)
+        {
+            this.canvasGroup = GetComponent<CanvasGroup>();
+            this.canvasGroup.alpha = 0f;
+            
+            this.gameObject.SetActive(true);
+
+            this.roomID = room;
+            this.playerName = player;
+            
+            this.options = new RoomOptions {MaxPlayers = 8};
+        }
+
+        void RepaintRoomList_Internal()
+        {
             Room room = PhotonNetwork.CurrentRoom;
 
             int index = 0;
-            foreach (var pair in room.Players)
+            foreach (Player player in room.Players.Values)
             {
-                Debug.Log($"{pair.Key} : {pair.Value.NickName}");
-                
-                Player player = pair.Value;
                 if (player.IsLocal)
                 {
                     me.Initialize(player);
@@ -102,28 +149,29 @@ namespace CQ.LeagueOfLegends.TFT
                 teammates[i].SetVacant();
             }
 
-            roomTitle.text = roomID;
-            
-            matchStart.onClick.RemoveAllListeners();
-            matchStart.onClick.AddListener(OnMatchStart);
-
-            FadeIn();
-        }
-
-        void OnMatchStart()
-        {
-            Debug.Log("Match Start");
-            
-            // 게임 시작을 통지
-        }
-
-        void FadeIn()
-        {
-            Tweener tween = cg.DOFade(1.0f, 0.5f);
-            tween.onComplete += () =>
+            // 게임 시작 버튼
+            if (PhotonNetwork.LocalPlayer.IsMasterClient)
             {
-                Debug.Log("OnComplete");
-            };
+                matchStart.gameObject.SetActive(true);
+            }
+            else
+            {
+                matchStart.gameObject.SetActive(false);
+            }
+            
+            roomTitle.text = roomID;
+        }
+
+
+        void FadeIn_Internal()
+        {
+            canvasGroup.alpha = 0f;
+            Tweener tween = canvasGroup.DOFade(1.0f, 0.5f);
+        }
+
+        public void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info)
+        {
+            //Debug.Log("OnPhotonSerializeView");
         }
     }
 }

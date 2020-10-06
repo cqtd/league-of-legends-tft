@@ -12,6 +12,16 @@ namespace CQ.LeagueOfLegends.TFT
 		public virtual void Initialize(Player player)
 		{
 			displayName.text = player.NickName;
+			
+			avatar.gameObject.SetActive(true);
+			if (player.IsMasterClient)
+			{
+				avatar.SetMaster(true);
+			}
+			else
+			{
+				avatar.SetMaster(false);
+			}
 		}
 	}
 }
