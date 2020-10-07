@@ -7,9 +7,9 @@ namespace CQ.LeagueOfLegends.TFT.UI
 {
 	public class UIButton : Button
 	{
-		[SerializeField] TextMeshProUGUI text;
-		[SerializeField]  ColorBlock textColors;
-		[SerializeField]  Transition trans = Transition.ColorTint;
+		[SerializeField] TextMeshProUGUI text = default;
+		[SerializeField] ColorBlock textColors = default;
+		[SerializeField] Transition trans = Transition.ColorTint;
 		
 		// Placeholders
 		private AnimationTriggers animTriggers = new AnimationTriggers();

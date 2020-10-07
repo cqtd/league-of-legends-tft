@@ -5,7 +5,7 @@ namespace CQ.LeagueOfLegends.TFT
 {
 	public class LobbyAvatar : MonoBehaviour
 	{
-		[SerializeField] Image master;
+		[SerializeField] Image master = default;
 
 		public void SetMaster(bool isMaster)
 		{
