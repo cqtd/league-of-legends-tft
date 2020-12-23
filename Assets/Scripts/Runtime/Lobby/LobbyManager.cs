@@ -83,6 +83,20 @@ namespace CQ.LeagueOfLegends.TFT
             
 
             FadeIn_Internal();
+            
+            
+
+            // if (PhotonNetwork.IsMasterClient)
+            // {
+            //     for (int i = 0; i < 5; i++)
+            //     {
+            //         var monster = PhotonNetwork.Instantiate("TagTest", Vector3.zero, Quaternion.identity);
+            //         monster.SetActive(true);
+            //     }
+            // }
+            //
+            // GameObject[] MonsterGroup = GameObject.FindGameObjectsWithTag("TagTest");
+            // Debug.Log("FindGameObjectsWithTag(TagTest)" + " = " + MonsterGroup.Length);
         }
 
         public override void OnJoinRoomFailed(short returnCode, string message)

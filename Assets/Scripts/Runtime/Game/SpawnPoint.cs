@@ -10,7 +10,6 @@ namespace CQ.LeagueOfLegends.TFT
 			UnityEditor.Handles.color = Color.black;
 			UnityEditor.Handles.Label(transform.position, gameObject.name);
 		}
-	}
 #endif
-
+	}
 }
