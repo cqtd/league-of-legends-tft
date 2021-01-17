@@ -1,0 +1,6 @@
+C:\Github\Unity Projects\league-of-legends-tft\Console\TeamFightTactics\TeamFightTactics.Common\bin\Debug\TeamFightTactics.Common.dll
+C:\Github\Unity Projects\league-of-legends-tft\Console\TeamFightTactics\TeamFightTactics.Common\bin\Debug\TeamFightTactics.Common.pdb
+C:\Github\Unity Projects\league-of-legends-tft\Console\TeamFightTactics\TeamFightTactics.Common\obj\Debug\TeamFightTactics.Common.csprojAssemblyReference.cache
+C:\Github\Unity Projects\league-of-legends-tft\Console\TeamFightTactics\TeamFightTactics.Common\obj\Debug\TeamFightTactics.Common.csproj.CoreCompileInputs.cache
+C:\Github\Unity Projects\league-of-legends-tft\Console\TeamFightTactics\TeamFightTactics.Common\obj\Debug\TeamFightTactics.Common.dll
+C:\Github\Unity Projects\league-of-legends-tft\Console\TeamFightTactics\TeamFightTactics.Common\obj\Debug\TeamFightTactics.Common.pdb

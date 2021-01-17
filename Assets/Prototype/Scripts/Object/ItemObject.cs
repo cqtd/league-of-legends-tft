@@ -3,8 +3,14 @@
 	public class ItemObject : StaticData
 	{
 		public int id;
-		public string displayName;
 		public string description;
+
+		public bool IsCombined {
+			get
+			{
+				return id > 10;
+			}
+		}
 	}
 
 	public class ItemDataBridge

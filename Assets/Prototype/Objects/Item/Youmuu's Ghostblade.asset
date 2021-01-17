@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6e62f84bbf7d458fbe8763a693273245, type: 3}
   m_Name: Youmuu's Ghostblade
   m_EditorClassIdentifier: 
-  id: 89
+  icon: {fileID: 21300000, guid: c779bb2a2b1d3bb41ad7bdaeef1e6c81, type: 3}
   displayName: Youmuu's Ghostblade
+  id: 89
   description: The wearer gains the Assassin trait.

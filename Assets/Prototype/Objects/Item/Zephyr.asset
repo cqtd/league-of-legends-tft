@@ -12,7 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6e62f84bbf7d458fbe8763a693273245, type: 3}
   m_Name: Zephyr
   m_EditorClassIdentifier: 
-  id: 67
+  icon: {fileID: 21300000, guid: 020715cff11bfbd49b0937b13570ced9, type: 3}
   displayName: Zephyr
+  id: 67
   description: When combat begins, the wearer summons a whirlwind on the opposite
     side of the arena that removes the closest enemy from combat for several seconds.

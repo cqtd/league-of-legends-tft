@@ -12,7 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6e62f84bbf7d458fbe8763a693273245, type: 3}
   m_Name: Last Whisper
   m_EditorClassIdentifier: 
-  id: 29
+  icon: {fileID: 21300000, guid: b9f2cd712ccd85e42ac33fd2774c170a, type: 3}
   displayName: Last Whisper
+  id: 29
   description: When the wearer inflicts a critical hit, the target's Armor is reduced
     for a number of seconds.

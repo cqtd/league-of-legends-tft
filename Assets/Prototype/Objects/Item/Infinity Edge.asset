@@ -12,7 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6e62f84bbf7d458fbe8763a693273245, type: 3}
   m_Name: Infinity Edge
   m_EditorClassIdentifier: 
-  id: 19
+  icon: {fileID: 21300000, guid: 8e0233759aa39c549a07542f49dcf851, type: 3}
   displayName: Infinity Edge
+  id: 19
   description: Grants Critical Strike Chance. Each point of Critical Strike Chance
     above 100% becomes bonus Critical Strike Damage.

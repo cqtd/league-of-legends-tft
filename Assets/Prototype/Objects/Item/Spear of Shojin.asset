@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6e62f84bbf7d458fbe8763a693273245, type: 3}
   m_Name: Spear of Shojin
   m_EditorClassIdentifier: 
-  id: 14
+  icon: {fileID: 21300000, guid: 0784baa8658a6754681307ea273d4006, type: 3}
   displayName: Spear of Shojin
+  id: 14
   description: The holder's basic attacks restore Mana on-hit.

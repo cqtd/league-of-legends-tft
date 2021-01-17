@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 526d403c83e9460b87717024fc371e6f, type: 3}
   m_Name: TFT4_Riven
   m_EditorClassIdentifier: 
+  icon: {fileID: 21300000, guid: b96d15f884ec3934ca64bb50c17a2d0a, type: 3}
   displayName: Riven
   championId: TFT4_Riven
   cost: 4

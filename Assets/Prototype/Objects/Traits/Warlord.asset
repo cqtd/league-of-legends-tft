@@ -12,8 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4c5b28323bfd43bf8d04003646df8516, type: 3}
   m_Name: Warlord
   m_EditorClassIdentifier: 
-  key: Warlord
+  icon: {fileID: 21300000, guid: 7e593e6cc13ef314aaf746d1df8d503f, type: 3}
   displayName: Warlord
+  key: Warlord
   innate: 
   description: Warlords have bonus Health and Spell Power. Each victorious combat
     they participate in increases the bonus.

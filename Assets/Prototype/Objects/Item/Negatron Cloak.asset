@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6e62f84bbf7d458fbe8763a693273245, type: 3}
   m_Name: Negatron Cloak
   m_EditorClassIdentifier: 
-  id: 6
+  icon: {fileID: 21300000, guid: a88d799cb01e4e84497c63e185b4b0fd, type: 3}
   displayName: Negatron Cloak
+  id: 6
   description: Gain Magic Resist.

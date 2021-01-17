@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 526d403c83e9460b87717024fc371e6f, type: 3}
   m_Name: TFT4_Sejuani
   m_EditorClassIdentifier: 
+  icon: {fileID: 21300000, guid: 2eb00fe70ace79640a6aa0bf16fde6fb, type: 3}
   displayName: Sejuani
   championId: TFT4_Sejuani
   cost: 4

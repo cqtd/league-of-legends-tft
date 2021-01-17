@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 526d403c83e9460b87717024fc371e6f, type: 3}
   m_Name: TFT4_Annie
   m_EditorClassIdentifier: 
+  icon: {fileID: 21300000, guid: e4e8d7c772dae95469059d5cb9cb1638, type: 3}
   displayName: Annie
   championId: TFT4_Annie
   cost: 2

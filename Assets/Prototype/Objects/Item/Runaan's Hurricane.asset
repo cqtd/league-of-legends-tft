@@ -12,8 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6e62f84bbf7d458fbe8763a693273245, type: 3}
   m_Name: Runaan's Hurricane
   m_EditorClassIdentifier: 
-  id: 26
+  icon: {fileID: 21300000, guid: aa6580033c5fb924e8823b39bc3992df, type: 3}
   displayName: Runaan's Hurricane
+  id: 26
   description: Basic Attacks fire a bolt at another nearby enemy, dealing a percentage
     of the wearer's Attack Damage and applying on-hit effects. These bolts can critical
     strike.

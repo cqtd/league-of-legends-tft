@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6e62f84bbf7d458fbe8763a693273245, type: 3}
   m_Name: Vanguard's Cuirass
   m_EditorClassIdentifier: 
-  id: 58
+  icon: {fileID: 21300000, guid: 032eb1b623431b842aca783c380d635b, type: 3}
   displayName: Vanguard's Cuirass
+  id: 58
   description: The holder gains the Vanguard trait.

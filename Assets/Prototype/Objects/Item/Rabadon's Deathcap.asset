@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6e62f84bbf7d458fbe8763a693273245, type: 3}
   m_Name: Rabadon's Deathcap
   m_EditorClassIdentifier: 
-  id: 33
+  icon: {fileID: 21300000, guid: fded46b68ddf9694cb72575a894e6dac, type: 3}
   displayName: Rabadon's Deathcap
+  id: 33
   description: The holder gains additional Spell Power.

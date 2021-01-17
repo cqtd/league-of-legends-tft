@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6e62f84bbf7d458fbe8763a693273245, type: 3}
   m_Name: Aspect of Dusk
   m_EditorClassIdentifier: 
-  id: 38
+  icon: {fileID: 21300000, guid: a0dfbf06822fab8428ae7549aa16441e, type: 3}
   displayName: Aspect of Dusk
+  id: 38
   description: The holder gains the Dusk trait.

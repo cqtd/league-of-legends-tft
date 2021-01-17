@@ -12,7 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6e62f84bbf7d458fbe8763a693273245, type: 3}
   m_Name: Deathblade
   m_EditorClassIdentifier: 
-  id: 11
+  icon: {fileID: 21300000, guid: e40434a8691a0414fae44a31877c8d49, type: 3}
   displayName: Deathblade
+  id: 11
   description: Contributing to a kill grants the holder addtional Attack Damage for
     the rest of combat.

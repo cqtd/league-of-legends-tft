@@ -1,19 +1,26 @@
 ﻿using System;
 using System.Linq;
-using UnityEditor;
 using UnityEngine;
+
+#if UNITY_EDITOR
+using UnityEditor;
+#endif
 
 namespace Prototype
 {
 	public class ChampionObject : StaticData
 	{
-		public string displayName;
 		public string championId;
 		public int cost;
 		public TraitsObject[] traits;
 
 		public BattleStat battleStat;
+		
 
+
+		#region UNITY_EDITOR
+
+		#if UNITY_EDITOR
 
 		[ContextMenu("Paste from Clipboard")]
 		private void Paste()
@@ -120,6 +127,10 @@ namespace Prototype
 			EditorUtility.SetDirty(this);
 			AssetDatabase.SaveAssets();
 		}
+		
+#endif
+
+		#endregion
 	}
 
 	[Serializable]

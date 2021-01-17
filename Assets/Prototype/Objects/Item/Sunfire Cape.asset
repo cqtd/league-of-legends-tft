@@ -12,8 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6e62f84bbf7d458fbe8763a693273245, type: 3}
   m_Name: Sunfire Cape
   m_EditorClassIdentifier: 
-  id: 57
+  icon: {fileID: 21300000, guid: 62c2117cc6655ed46a11939a7619b86c, type: 3}
   displayName: Sunfire Cape
+  id: 57
   description: At start of combat, and every couple seconds thereafter, a random
     nearby enemyis burned for a percentage of their maximum health. Any healing they
     receive is reduced.

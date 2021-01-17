@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6e62f84bbf7d458fbe8763a693273245, type: 3}
   m_Name: Sword of the Divine
   m_EditorClassIdentifier: 
-  id: 18
+  icon: {fileID: 21300000, guid: 591cfe0e3191936448ed6194caf91415, type: 3}
   displayName: Sword of the Divine
+  id: 18
   description: The holder gains the Divine trait.

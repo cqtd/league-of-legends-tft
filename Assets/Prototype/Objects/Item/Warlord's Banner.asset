@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6e62f84bbf7d458fbe8763a693273245, type: 3}
   m_Name: Warlord's Banner
   m_EditorClassIdentifier: 
-  id: 78
+  icon: {fileID: 21300000, guid: cc699a964727d814f98f1d349dbd660b, type: 3}
   displayName: Warlord's Banner
+  id: 78
   description: The wearer gains the Warlord trait.

@@ -12,7 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6e62f84bbf7d458fbe8763a693273245, type: 3}
   m_Name: Bramble Vest
   m_EditorClassIdentifier: 
-  id: 55
+  icon: {fileID: 21300000, guid: 235e36a7949f6f04ab687734c0cbf151, type: 3}
   displayName: Bramble Vest
+  id: 55
   description: Negates bonus damage from incoming critical hits. On being hit by
     a Basic Attack, deal magic damage to all nearby enemies.

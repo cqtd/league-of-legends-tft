@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 526d403c83e9460b87717024fc371e6f, type: 3}
   m_Name: TFT4_Kalista
   m_EditorClassIdentifier: 
+  icon: {fileID: 21300000, guid: 2db5f36659c0e5d498a940823fb1880e, type: 3}
   displayName: Kalista
   championId: TFT4_Kalista
   cost: 3

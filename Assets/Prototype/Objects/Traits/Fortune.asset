@@ -12,8 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4c5b28323bfd43bf8d04003646df8516, type: 3}
   m_Name: Fortune
   m_EditorClassIdentifier: 
-  key: Fortune
+  icon: {fileID: 21300000, guid: 6efab9b5642848b408ad265777f6c2fa, type: 3}
   displayName: Fortune
+  key: Fortune
   innate: 
   description: Winning combat against a player will give bonus orbs. The longer you've
     gone without an orb, the bigger the payout! Wins give an extra bonus orb with

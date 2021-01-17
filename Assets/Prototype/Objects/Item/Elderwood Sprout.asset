@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6e62f84bbf7d458fbe8763a693273245, type: 3}
   m_Name: Elderwood Sprout
   m_EditorClassIdentifier: 
-  id: 68
+  icon: {fileID: 21300000, guid: 84ee9ac315d47f741a6696cba3d7b6ec, type: 3}
   displayName: Elderwood Sprout
+  id: 68
   description: The holder gains the Elderwood trait.

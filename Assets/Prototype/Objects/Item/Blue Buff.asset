@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6e62f84bbf7d458fbe8763a693273245, type: 3}
   m_Name: Blue Buff
   m_EditorClassIdentifier: 
-  id: 44
+  icon: {fileID: 21300000, guid: 8f5b659e918d8cb4a9c43bb85ae5ecf4, type: 3}
   displayName: Blue Buff
+  id: 44
   description: After casting their spell, the wearer gains Mana.

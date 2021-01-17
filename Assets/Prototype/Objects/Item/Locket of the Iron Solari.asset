@@ -12,7 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6e62f84bbf7d458fbe8763a693273245, type: 3}
   m_Name: Locket of the Iron Solari
   m_EditorClassIdentifier: 
-  id: 35
+  icon: {fileID: 21300000, guid: 86752ef42845ac940808f6afa694b33c, type: 3}
   displayName: Locket of the Iron Solari
+  id: 35
   description: When combat begins, the wearer and nearby allies in the same row gain
     a shield that blocks damage for several seconds.

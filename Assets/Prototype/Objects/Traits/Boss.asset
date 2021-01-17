@@ -12,8 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4c5b28323bfd43bf8d04003646df8516, type: 3}
   m_Name: Boss
   m_EditorClassIdentifier: 
-  key: Boss
+  icon: {fileID: 21300000, guid: 506d005fe11adfe4d96882ff70b65922, type: 3}
   displayName: The Boss
+  key: Boss
   innate: 
   description: 'When The Boss first drops below a percentage of his Health, he leaves
     combat to start doing sit-ups. Each sit-up restores a percentage of his maximum

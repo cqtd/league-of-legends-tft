@@ -12,7 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6e62f84bbf7d458fbe8763a693273245, type: 3}
   m_Name: Statikk Shiv
   m_EditorClassIdentifier: 
-  id: 24
+  icon: {fileID: 21300000, guid: 40ed5b27ffe5eac488a16ac447106ea3, type: 3}
   displayName: Statikk Shiv
+  id: 24
   description: Every third Basic Attack from the wearer deals Magic Damage to nearby
     enemies, and true damage if they are shielded or crowd-controlled.

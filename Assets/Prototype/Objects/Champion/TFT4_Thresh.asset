@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 526d403c83e9460b87717024fc371e6f, type: 3}
   m_Name: TFT4_Thresh
   m_EditorClassIdentifier: 
+  icon: {fileID: 21300000, guid: 4a14ff408c3fb0248a4e1b43c29026fd, type: 3}
   displayName: Thresh
   championId: TFT4_Thresh
   cost: 2

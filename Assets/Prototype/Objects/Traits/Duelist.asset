@@ -12,8 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4c5b28323bfd43bf8d04003646df8516, type: 3}
   m_Name: Duelist
   m_EditorClassIdentifier: 
-  key: Duelist
+  icon: {fileID: 21300000, guid: 9ff81216e217a76429f95127f75336e1, type: 3}
   displayName: Duelist
+  key: Duelist
   innate: Duelists gain bonus Movement Speed.
   description: Duelists' attacks grant Attack Speed.
   type: 0

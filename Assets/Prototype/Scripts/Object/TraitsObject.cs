@@ -1,11 +1,11 @@
 ﻿using System;
+using UnityEngine;
 
 namespace Prototype
 {
 	public class TraitsObject : StaticData
 	{
 		public string key;
-		public string displayName;
 		public string innate;
 		public string description;
 		public ETraitType type;

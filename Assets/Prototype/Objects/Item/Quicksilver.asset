@@ -12,7 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6e62f84bbf7d458fbe8763a693273245, type: 3}
   m_Name: Quicksilver
   m_EditorClassIdentifier: 
-  id: 69
+  icon: {fileID: 21300000, guid: 64ce47edc2c317645b5be10123a5701b, type: 3}
   displayName: Quicksilver
+  id: 69
   description: The wearer is immune to crowd control for the first several seconds
     of combat.

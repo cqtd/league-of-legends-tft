@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6e62f84bbf7d458fbe8763a693273245, type: 3}
   m_Name: Force of Nature
   m_EditorClassIdentifier: 
-  id: 88
+  icon: {fileID: 21300000, guid: 038e995a9f0573249966202ba8eb2d1f, type: 3}
   displayName: Force of Nature
+  id: 88
   description: 

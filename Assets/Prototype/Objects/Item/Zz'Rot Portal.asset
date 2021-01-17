@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6e62f84bbf7d458fbe8763a693273245, type: 3}
   m_Name: Zz'Rot Portal
   m_EditorClassIdentifier: 
-  id: 27
+  icon: {fileID: 21300000, guid: 391861977f289f44b9eb55e7749bc5c0, type: 3}
   displayName: Zz'Rot Portal
+  id: 27
   description: When the wearer dies, a Construct arises to continue the fight.

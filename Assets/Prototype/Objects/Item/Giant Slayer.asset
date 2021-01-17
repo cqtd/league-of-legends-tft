@@ -12,7 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6e62f84bbf7d458fbe8763a693273245, type: 3}
   m_Name: Giant Slayer
   m_EditorClassIdentifier: 
-  id: 12
+  icon: {fileID: 21300000, guid: 4e4c523e458b643409341e89913a12f1, type: 3}
   displayName: Giant Slayer
+  id: 12
   description: The holder's spells and basic attacks do bonus damage. If the target
     has more health, the bonus damage increases.

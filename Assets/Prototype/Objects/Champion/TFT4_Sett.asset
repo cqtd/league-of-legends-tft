@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 526d403c83e9460b87717024fc371e6f, type: 3}
   m_Name: TFT4_Sett
   m_EditorClassIdentifier: 
+  icon: {fileID: 21300000, guid: 4ed3eaa72f0c93947b7527954d140ffd, type: 3}
   displayName: Sett
   championId: TFT4_Sett
   cost: 5

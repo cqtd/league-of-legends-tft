@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 526d403c83e9460b87717024fc371e6f, type: 3}
   m_Name: TFT4_Nidalee
   m_EditorClassIdentifier: 
+  icon: {fileID: 21300000, guid: 6f1cb271f94b5bf4eb6d3f7a2a01b71b, type: 3}
   displayName: Nidalee
   championId: TFT4_Nidalee
   cost: 1

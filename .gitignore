@@ -64,3 +64,4 @@ crashlytics-build.properties
 .idea/.idea.ConsoleCommand/.idea/vcs.xml
 .idea/.idea.ConsoleCommand/.idea/workspace.xml
 .gitconfig
+Packages/com.unity.demigant.dotween@1.0.0/

@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 526d403c83e9460b87717024fc371e6f, type: 3}
   m_Name: TFT4_Teemo
   m_EditorClassIdentifier: 
+  icon: {fileID: 21300000, guid: 553f859a9c3f3954a97fe7cc251fd828, type: 3}
   displayName: Teemo
   championId: TFT4_Teemo
   cost: 2

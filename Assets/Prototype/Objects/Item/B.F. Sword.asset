@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6e62f84bbf7d458fbe8763a693273245, type: 3}
   m_Name: B.F. Sword
   m_EditorClassIdentifier: 
-  id: 1
+  icon: {fileID: 21300000, guid: 8ae3859d5a41c354080d8d0977f8f413, type: 3}
   displayName: B.F. Sword
+  id: 1
   description: Gain Attack Damage.

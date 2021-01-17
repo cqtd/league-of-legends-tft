@@ -12,7 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6e62f84bbf7d458fbe8763a693273245, type: 3}
   m_Name: Zeke's Herald
   m_EditorClassIdentifier: 
-  id: 17
+  icon: {fileID: 21300000, guid: 3c209726ee15a4e4fa7538f85dc6366f, type: 3}
   displayName: Zeke's Herald
+  id: 17
   description: When combat begins, the wearer and nearby allies in the same row gain
     Attack Speed for the rest of combat.

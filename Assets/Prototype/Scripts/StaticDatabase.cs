@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using Newtonsoft.Json;
@@ -21,13 +22,71 @@ namespace Prototype
 		#region UNITY_EDITOR
 
 #if UNITY_EDITOR
+
+		[ContextMenu("Export Json")]
+		private void Export()
+		{
+			var map = new Dictionary<string, BattleStat>();
+			
+			foreach (ChampionObject champion in champions)
+			{
+				map[champion.championId] = champion.battleStat;
+			}
+
+			File.WriteAllText("Console/TeamFightTactics/Season4.5/stats.json", JsonConvert.SerializeObject(map, Formatting.Indented));
+		}
 		
 		[Header("Editor")]
 		public Object championsJson;
 		public Object itemsJson;
 		public Object traitsJson;
 		
-		[ContextMenu("Generate Items")]
+		[ContextMenu("Find Champion Thumbnails", false, 1)]
+		private void FindChampionThumbnail()
+		{
+			AssetDatabase.StartAssetEditing();
+			
+			foreach (var obj in champions)
+			{
+				obj.icon = AssetDatabase.LoadAssetAtPath<Sprite>($"Assets/Prototype/champions/{obj.championId}.png");
+				EditorUtility.SetDirty(obj);	
+			}
+			
+			AssetDatabase.StopAssetEditing();
+			AssetDatabase.SaveAssets();
+		}
+		
+		[ContextMenu("Find Item Thumbnails", false, 2)]
+		private void FindItemThumbnail()
+		{
+			AssetDatabase.StartAssetEditing();
+			
+			foreach (var obj in items)
+			{
+				obj.icon = AssetDatabase.LoadAssetAtPath<Sprite>($"Assets/Prototype/items/{obj.id:00}.png");
+				EditorUtility.SetDirty(obj);	
+			}
+			
+			AssetDatabase.StopAssetEditing();
+			AssetDatabase.SaveAssets();
+		}
+		
+		[ContextMenu("Find Traits Thumbnails", false, 3)]
+		private void FindTraitsThumbnail()
+		{
+			AssetDatabase.StartAssetEditing();
+			
+			foreach (var obj in traits)
+			{
+				obj.icon = AssetDatabase.LoadAssetAtPath<Sprite>($"Assets/Prototype/traits/{obj.displayName}.png");
+				EditorUtility.SetDirty(obj);	
+			}
+			
+			AssetDatabase.StopAssetEditing();
+			AssetDatabase.SaveAssets();
+		}
+		
+		[ContextMenu("Generate Items", false ,21)]
 		private void CreateItems()
 		{
 			string itemPath = AssetDatabase.GetAssetPath(itemsJson);
@@ -165,6 +224,19 @@ namespace Prototype
 		
 		#endregion
 
-		
+		public ItemObject[] GetBaseItems(ItemObject combined)
+		{
+			return new[]
+			{
+				items.FirstOrDefault(e => e.id == combined.id / 10),
+				items.FirstOrDefault(e => e.id == combined.id % 10)
+			};
+		}
+
+		public ItemObject[] GetCombinableItems(ItemObject baseItem)
+		{
+			return new HashSet<ItemObject>(items.Where(e =>
+				!ReferenceEquals(e, baseItem) && (e.id / 10 == baseItem.id || e.id % 10 == baseItem.id))).ToArray();
+		}
 	}
 }

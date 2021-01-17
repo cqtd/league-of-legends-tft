@@ -12,8 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4c5b28323bfd43bf8d04003646df8516, type: 3}
   m_Name: Set4_Adept
   m_EditorClassIdentifier: 
-  key: Set4_Adept
+  icon: {fileID: 21300000, guid: 6758ae89fda91254bbf1a234e8b7b66c, type: 3}
   displayName: Adept
+  key: Set4_Adept
   innate: 
   description: Adepts calm the flow of battle, reducing the Attack Speed of all enemies
     for a few seconds at the start of combat.

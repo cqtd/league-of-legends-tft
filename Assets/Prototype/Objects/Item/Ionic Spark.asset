@@ -12,7 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6e62f84bbf7d458fbe8763a693273245, type: 3}
   m_Name: Ionic Spark
   m_EditorClassIdentifier: 
-  id: 36
+  icon: {fileID: 21300000, guid: 07df0f931012e4941986a5974e0312c7, type: 3}
   displayName: Ionic Spark
+  id: 36
   description: Nearby enemies have their Magic Resist reduced. When they cast a spell,
     they are zapped taking magic damage equal to a percentage of their max Mana.

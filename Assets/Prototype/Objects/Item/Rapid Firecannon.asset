@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6e62f84bbf7d458fbe8763a693273245, type: 3}
   m_Name: Rapid Firecannon
   m_EditorClassIdentifier: 
-  id: 22
+  icon: {fileID: 21300000, guid: 2b475a89ac84672458dfb25b172e19e1, type: 3}
   displayName: Rapid Firecannon
+  id: 22
   description: The holder gains Attack Range, and their Basic Attacks can't miss.

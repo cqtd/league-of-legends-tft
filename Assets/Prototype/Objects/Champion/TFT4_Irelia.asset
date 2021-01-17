@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 526d403c83e9460b87717024fc371e6f, type: 3}
   m_Name: TFT4_Irelia
   m_EditorClassIdentifier: 
+  icon: {fileID: 21300000, guid: 12154f15c056f454ba2030608d4b18b8, type: 3}
   displayName: Irelia
   championId: TFT4_Irelia
   cost: 3

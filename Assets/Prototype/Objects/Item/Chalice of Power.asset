@@ -12,7 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6e62f84bbf7d458fbe8763a693273245, type: 3}
   m_Name: Chalice of Power
   m_EditorClassIdentifier: 
-  id: 46
+  icon: {fileID: 21300000, guid: d7e98c05603e6d2458249b1e72ff1d3c, type: 3}
   displayName: Chalice of Power
+  id: 46
   description: When combat begins, the wearer and all nearby allies in the same row
     gain Spell Power for the rest of combat.

@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6e62f84bbf7d458fbe8763a693273245, type: 3}
   m_Name: Redemption
   m_EditorClassIdentifier: 
-  id: 47
+  icon: {fileID: 21300000, guid: da1163cfd205f3944b33f0a6dd9b1cd8, type: 3}
   displayName: Redemption
+  id: 47
   description: When the wearer dies, allies are healed.

@@ -12,8 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6e62f84bbf7d458fbe8763a693273245, type: 3}
   m_Name: Titan's Resolve
   m_EditorClassIdentifier: 
-  id: 25
+  icon: {fileID: 21300000, guid: 1980dd8060d49dd478c299c92433d033, type: 3}
   displayName: Titan's Resolve
+  id: 25
   description: When the wearer takes damage or inflicts a critical hit, they gain
     a stacking damage bonus. The damage stacks up to a limit, at which point the
     wearer gains Armor and Magic Resistance, and increases in size.

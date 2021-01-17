@@ -12,8 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4c5b28323bfd43bf8d04003646df8516, type: 3}
   m_Name: Set4_Vanguard
   m_EditorClassIdentifier: 
-  key: Set4_Vanguard
+  icon: {fileID: 21300000, guid: d8a48a445aa940a4aae9a404942dcd70, type: 3}
   displayName: Vanguard
+  key: Set4_Vanguard
   innate: 
   description: Vanguard champions gain bonus Armor.
   type: 0

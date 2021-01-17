@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6e62f84bbf7d458fbe8763a693273245, type: 3}
   m_Name: Tear of the Goddess
   m_EditorClassIdentifier: 
-  id: 4
+  icon: {fileID: 21300000, guid: 978dd3ebaa603154c9fe3622b6db14b2, type: 3}
   displayName: Tear of the Goddess
+  id: 4
   description: Gain Mana.

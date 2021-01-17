@@ -12,7 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6e62f84bbf7d458fbe8763a693273245, type: 3}
   m_Name: Thief's Gloves
   m_EditorClassIdentifier: 
-  id: 99
+  icon: {fileID: 21300000, guid: 08e944341fcd62c44af376621fdf2e71, type: 3}
   displayName: Thief's Gloves
+  id: 99
   description: At the beginning of each planning phase, the wearer equips 2 temporary
     items. Temporary items increase in power based on your player level.

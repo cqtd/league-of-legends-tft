@@ -1,0 +1,15 @@
+C:\Github\Unity Projects\league-of-legends-tft\Console\TeamFightTactics\BattleSimulator\bin\Debug\BattleSimulator.exe
+C:\Github\Unity Projects\league-of-legends-tft\Console\TeamFightTactics\BattleSimulator\bin\Debug\BattleSimulator.pdb
+C:\Github\Unity Projects\league-of-legends-tft\Console\TeamFightTactics\BattleSimulator\bin\Debug\TeamFightTactics.Common.dll
+C:\Github\Unity Projects\league-of-legends-tft\Console\TeamFightTactics\BattleSimulator\bin\Debug\TeamFightTactics.Data.dll
+C:\Github\Unity Projects\league-of-legends-tft\Console\TeamFightTactics\BattleSimulator\bin\Debug\TeamFightTactics.Gameplay.dll
+C:\Github\Unity Projects\league-of-legends-tft\Console\TeamFightTactics\BattleSimulator\bin\Debug\Newtonsoft.Json.dll
+C:\Github\Unity Projects\league-of-legends-tft\Console\TeamFightTactics\BattleSimulator\bin\Debug\TeamFightTactics.Common.pdb
+C:\Github\Unity Projects\league-of-legends-tft\Console\TeamFightTactics\BattleSimulator\bin\Debug\TeamFightTactics.Data.pdb
+C:\Github\Unity Projects\league-of-legends-tft\Console\TeamFightTactics\BattleSimulator\bin\Debug\TeamFightTactics.Gameplay.pdb
+C:\Github\Unity Projects\league-of-legends-tft\Console\TeamFightTactics\BattleSimulator\bin\Debug\Newtonsoft.Json.xml
+C:\Github\Unity Projects\league-of-legends-tft\Console\TeamFightTactics\BattleSimulator\obj\Debug\BattleSimulator.csprojAssemblyReference.cache
+C:\Github\Unity Projects\league-of-legends-tft\Console\TeamFightTactics\BattleSimulator\obj\Debug\BattleSimulator.csproj.CoreCompileInputs.cache
+C:\Github\Unity Projects\league-of-legends-tft\Console\TeamFightTactics\BattleSimulator\obj\Debug\BattleSimulator.csproj.CopyComplete
+C:\Github\Unity Projects\league-of-legends-tft\Console\TeamFightTactics\BattleSimulator\obj\Debug\BattleSimulator.exe
+C:\Github\Unity Projects\league-of-legends-tft\Console\TeamFightTactics\BattleSimulator\obj\Debug\BattleSimulator.pdb

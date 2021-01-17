@@ -12,7 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6e62f84bbf7d458fbe8763a693273245, type: 3}
   m_Name: Jeweled Gauntlet
   m_EditorClassIdentifier: 
-  id: 39
+  icon: {fileID: 21300000, guid: 107adc0ac31fd1442a60a9a4e8ef0004, type: 3}
   displayName: Jeweled Gauntlet
+  id: 39
   description: The holder's spells can cause critical hits, and the holder gains
     bonus Critical Strike Damage.

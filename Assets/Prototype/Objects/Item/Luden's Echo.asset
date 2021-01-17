@@ -12,7 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6e62f84bbf7d458fbe8763a693273245, type: 3}
   m_Name: Luden's Echo
   m_EditorClassIdentifier: 
-  id: 34
+  icon: {fileID: 21300000, guid: 7224e7289dc91054bab6c82b0e28bff8, type: 3}
   displayName: Luden's Echo
+  id: 34
   description: When the holder casts their spell, the first target dealt magic damage
     and to nearby enemies are dealt additional magic damage.

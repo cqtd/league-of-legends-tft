@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 526d403c83e9460b87717024fc371e6f, type: 3}
   m_Name: TFT4_Garen
   m_EditorClassIdentifier: 
+  icon: {fileID: 21300000, guid: 2fd8d253371515544a7b6f5e3a89524c, type: 3}
   displayName: Garen
   championId: TFT4_Garen
   cost: 1

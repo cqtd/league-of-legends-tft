@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6e62f84bbf7d458fbe8763a693273245, type: 3}
   m_Name: Duelist's Zeal
   m_EditorClassIdentifier: 
-  id: 28
+  icon: {fileID: 21300000, guid: ee9df9327a3748848bec1be0340e34cd, type: 3}
   displayName: Duelist's Zeal
+  id: 28
   description: The holder gains the Duelist trait.

@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6e62f84bbf7d458fbe8763a693273245, type: 3}
   m_Name: Sparring Gloves
   m_EditorClassIdentifier: 
-  id: 9
+  icon: {fileID: 21300000, guid: 8928efb4660a9e24492c9b03238c6426, type: 3}
   displayName: Sparring Gloves
+  id: 9
   description: Gain Critical Strike Chance and Dodge Chance.

@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6e62f84bbf7d458fbe8763a693273245, type: 3}
   m_Name: Warmog's Armor
   m_EditorClassIdentifier: 
-  id: 77
+  icon: {fileID: 21300000, guid: f96f6b607c0ade54faed64cca8e60401, type: 3}
   displayName: Warmog's Armor
+  id: 77
   description: Grants bonus Health.

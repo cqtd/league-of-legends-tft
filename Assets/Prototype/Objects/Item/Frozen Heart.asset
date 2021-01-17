@@ -12,7 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6e62f84bbf7d458fbe8763a693273245, type: 3}
   m_Name: Frozen Heart
   m_EditorClassIdentifier: 
-  id: 45
+  icon: {fileID: 21300000, guid: 0f456c146a0219f4e86d84887f5ead90, type: 3}
   displayName: Frozen Heart
+  id: 45
   description: Reduces the Attack Speed of nearby enemies. Each Frozen Heart a champion
     carries beyond the first increases the radius of this effect.

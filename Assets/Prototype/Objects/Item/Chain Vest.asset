@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6e62f84bbf7d458fbe8763a693273245, type: 3}
   m_Name: Chain Vest
   m_EditorClassIdentifier: 
-  id: 5
+  icon: {fileID: 21300000, guid: f388b90c898299f459dc754baeb97f2d, type: 3}
   displayName: Chain Vest
+  id: 5
   description: Gain Armor.

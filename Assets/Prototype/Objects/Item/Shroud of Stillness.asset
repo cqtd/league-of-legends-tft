@@ -12,7 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6e62f84bbf7d458fbe8763a693273245, type: 3}
   m_Name: Shroud of Stillness
   m_EditorClassIdentifier: 
-  id: 59
+  icon: {fileID: 21300000, guid: 8c7c26a1f89e2824d86caf96397b852c, type: 3}
   displayName: Shroud of Stillness
+  id: 59
   description: When combat begins, shoots a beam straight ahead that delays affected
     enemies' first spellcast, increasing their max Mana until they cast.

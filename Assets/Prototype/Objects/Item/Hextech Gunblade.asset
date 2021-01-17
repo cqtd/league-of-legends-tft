@@ -12,7 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6e62f84bbf7d458fbe8763a693273245, type: 3}
   m_Name: Hextech Gunblade
   m_EditorClassIdentifier: 
-  id: 13
+  icon: {fileID: 21300000, guid: d9b019a3f9c7599479cf6883aa659542, type: 3}
   displayName: Hextech Gunblade
+  id: 13
   description: The holder's spells heal them for a percentage of the damage dealt.
     Excess healing fuels a shield that protects the holder.

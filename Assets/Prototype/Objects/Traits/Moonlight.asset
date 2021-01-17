@@ -12,8 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4c5b28323bfd43bf8d04003646df8516, type: 3}
   m_Name: Moonlight
   m_EditorClassIdentifier: 
-  key: Moonlight
+  icon: {fileID: 21300000, guid: b2ddbd4b8bcc5274aa2fdcc6689695d9, type: 3}
   displayName: Moonlight
+  key: Moonlight
   innate: 
   description: At the start of combat the lowest star-level Moonlight Champion stars
     up until combat ends. (If tied, the champion with the most items is chosen.)

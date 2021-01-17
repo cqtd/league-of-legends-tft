@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 526d403c83e9460b87717024fc371e6f, type: 3}
   m_Name: TFT4_Fiora
   m_EditorClassIdentifier: 
+  icon: {fileID: 21300000, guid: 77d75941045acf7468b0dac0fcb69b5d, type: 3}
   displayName: Fiora
   championId: TFT4_Fiora
   cost: 1

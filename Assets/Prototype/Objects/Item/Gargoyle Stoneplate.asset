@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6e62f84bbf7d458fbe8763a693273245, type: 3}
   m_Name: Gargoyle Stoneplate
   m_EditorClassIdentifier: 
-  id: 56
+  icon: {fileID: 21300000, guid: d8300918bb9b4224bba5614e23028aa5, type: 3}
   displayName: Gargoyle Stoneplate
+  id: 56
   description: The holder gains Armor and Magic Resist for each enemy targeting them.

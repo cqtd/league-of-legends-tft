@@ -12,7 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6e62f84bbf7d458fbe8763a693273245, type: 3}
   m_Name: Trap Claw
   m_EditorClassIdentifier: 
-  id: 79
+  icon: {fileID: 21300000, guid: abf06384e3d901e4c877c0de0d1b199f, type: 3}
   displayName: Trap Claw
+  id: 79
   description: Blocks the first enemy spell that hits the wearer, and stuns the spell's
     caster for several seconds.

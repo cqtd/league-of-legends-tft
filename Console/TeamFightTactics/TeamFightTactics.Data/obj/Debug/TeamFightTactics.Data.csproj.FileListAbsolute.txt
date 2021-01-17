@@ -1,0 +1,11 @@
+C:\Github\Unity Projects\league-of-legends-tft\Console\TeamFightTactics\TeamFightTactics.Data\bin\Debug\TeamFightTactics.Data.dll
+C:\Github\Unity Projects\league-of-legends-tft\Console\TeamFightTactics\TeamFightTactics.Data\bin\Debug\TeamFightTactics.Data.pdb
+C:\Github\Unity Projects\league-of-legends-tft\Console\TeamFightTactics\TeamFightTactics.Data\bin\Debug\Newtonsoft.Json.dll
+C:\Github\Unity Projects\league-of-legends-tft\Console\TeamFightTactics\TeamFightTactics.Data\bin\Debug\TeamFightTactics.Common.dll
+C:\Github\Unity Projects\league-of-legends-tft\Console\TeamFightTactics\TeamFightTactics.Data\bin\Debug\TeamFightTactics.Common.pdb
+C:\Github\Unity Projects\league-of-legends-tft\Console\TeamFightTactics\TeamFightTactics.Data\bin\Debug\Newtonsoft.Json.xml
+C:\Github\Unity Projects\league-of-legends-tft\Console\TeamFightTactics\TeamFightTactics.Data\obj\Debug\TeamFightTactics.Data.csprojAssemblyReference.cache
+C:\Github\Unity Projects\league-of-legends-tft\Console\TeamFightTactics\TeamFightTactics.Data\obj\Debug\TeamFightTactics.Data.csproj.CoreCompileInputs.cache
+C:\Github\Unity Projects\league-of-legends-tft\Console\TeamFightTactics\TeamFightTactics.Data\obj\Debug\TeamFightTactics.Data.csproj.CopyComplete
+C:\Github\Unity Projects\league-of-legends-tft\Console\TeamFightTactics\TeamFightTactics.Data\obj\Debug\TeamFightTactics.Data.dll
+C:\Github\Unity Projects\league-of-legends-tft\Console\TeamFightTactics\TeamFightTactics.Data\obj\Debug\TeamFightTactics.Data.pdb

@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6e62f84bbf7d458fbe8763a693273245, type: 3}
   m_Name: Spatula
   m_EditorClassIdentifier: 
-  id: 8
+  icon: {fileID: 21300000, guid: 4709cafa5d49f2945b84ff30b4d2c637, type: 3}
   displayName: Spatula
+  id: 8
   description: It must do something...

@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 526d403c83e9460b87717024fc371e6f, type: 3}
   m_Name: TFT4_Sylas
   m_EditorClassIdentifier: 
+  icon: {fileID: 21300000, guid: d96d3441fce2d814ba87312d3646f887, type: 3}
   displayName: Sylas
   championId: TFT4_Sylas
   cost: 1

@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6e62f84bbf7d458fbe8763a693273245, type: 3}
   m_Name: Guinsoo's Rageblade
   m_EditorClassIdentifier: 
-  id: 23
+  icon: {fileID: 21300000, guid: 24e905b55ea34f84e9753f9de057ad13, type: 3}
   displayName: Guinsoo's Rageblade
+  id: 23
   description: Basic Attacks grant bonus Attack Speed for the rest of combat.

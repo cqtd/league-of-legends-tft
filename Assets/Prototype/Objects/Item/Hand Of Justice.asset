@@ -12,7 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6e62f84bbf7d458fbe8763a693273245, type: 3}
   m_Name: Hand Of Justice
   m_EditorClassIdentifier: 
-  id: 49
+  icon: {fileID: 21300000, guid: 5d0c57bae0393fa4cb3e401f9f502f7d, type: 3}
   displayName: Hand Of Justice
+  id: 49
   description: At the beginning of each planning phase, the wearer's basic attacks
     and spells deal additional damage or heal for a percentage of damage dealt.

@@ -12,8 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4c5b28323bfd43bf8d04003646df8516, type: 3}
   m_Name: Hunter
   m_EditorClassIdentifier: 
-  key: Hunter
+  icon: {fileID: 21300000, guid: c1173c86d08ddf6489a59a91eaf20384, type: 3}
   displayName: Hunter
+  key: Hunter
   innate: 
   description: Every few seconds, all Hunters will attack the lowest percent Health
     enemy, dealing bonus damage.

@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 526d403c83e9460b87717024fc371e6f, type: 3}
   m_Name: TFT4_Lillia
   m_EditorClassIdentifier: 
+  icon: {fileID: 21300000, guid: a2f18c6003a02ab4db466a7de7189b56, type: 3}
   displayName: Lillia
   championId: TFT4_Lillia
   cost: 5

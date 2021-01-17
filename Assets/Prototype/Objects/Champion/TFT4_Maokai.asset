@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 526d403c83e9460b87717024fc371e6f, type: 3}
   m_Name: TFT4_Maokai
   m_EditorClassIdentifier: 
+  icon: {fileID: 21300000, guid: 795e1de2b8a216b49b872c8694c8f8ab, type: 3}
   displayName: Maokai
   championId: TFT4_Maokai
   cost: 1
