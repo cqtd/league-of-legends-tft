@@ -1,0 +1,29 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4c5b28323bfd43bf8d04003646df8516, type: 3}
+  m_Name: Set4_Vanguard
+  m_EditorClassIdentifier: 
+  key: Set4_Vanguard
+  displayName: Vanguard
+  innate: 
+  description: Vanguard champions gain bonus Armor.
+  type: 0
+  sets:
+  - style: 0
+    min: 2
+    max: 3
+  - style: 1
+    min: 4
+    max: 5
+  - style: 2
+    min: 6
+    max: 0

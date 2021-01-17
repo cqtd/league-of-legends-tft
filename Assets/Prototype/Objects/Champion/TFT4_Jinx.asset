@@ -1,0 +1,36 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 526d403c83e9460b87717024fc371e6f, type: 3}
+  m_Name: TFT4_Jinx
+  m_EditorClassIdentifier: 
+  displayName: Jinx
+  championId: TFT4_Jinx
+  cost: 3
+  traits:
+  - {fileID: 11400000, guid: 5382a481aee468342b0493aa38bbd977, type: 2}
+  - {fileID: 11400000, guid: e77a9ca9835f41240bbf07f6d681a991, type: 2}
+  battleStat:
+    healths:
+    - 650
+    - 1170
+    - 2106
+    armor: 20
+    resist: 20
+    attackDamages:
+    - 65
+    - 117
+    - 210.6
+    attackSpeed: 0.75
+    attackRange: 3
+    initialMana: 70
+    maxMana: 120
+    isMelee: 0

@@ -1,0 +1,36 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 526d403c83e9460b87717024fc371e6f, type: 3}
+  m_Name: TFT4_TahmKench
+  m_EditorClassIdentifier: 
+  displayName: Tahm Kench
+  championId: TFT4_TahmKench
+  cost: 1
+  traits:
+  - {fileID: 11400000, guid: 5382a481aee468342b0493aa38bbd977, type: 2}
+  - {fileID: 11400000, guid: 2d9815737ab47da4fb17c5297a4390c1, type: 2}
+  battleStat:
+    healths:
+    - 700
+    - 1260
+    - 2268
+    armor: 40
+    resist: 30
+    attackDamages:
+    - 85
+    - 153
+    - 275
+    attackSpeed: 0.5
+    attackRange: 1
+    initialMana: 0
+    maxMana: 0
+    isMelee: 1

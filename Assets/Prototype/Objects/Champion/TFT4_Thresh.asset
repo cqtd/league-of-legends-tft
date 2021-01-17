@@ -1,0 +1,36 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 526d403c83e9460b87717024fc371e6f, type: 3}
+  m_Name: TFT4_Thresh
+  m_EditorClassIdentifier: 
+  displayName: Thresh
+  championId: TFT4_Thresh
+  cost: 2
+  traits:
+  - {fileID: 11400000, guid: ef836f75018904a4896b4cdde4daed1f, type: 2}
+  - {fileID: 11400000, guid: 00383471859d33846a9ac753401716ff, type: 2}
+  battleStat:
+    healths:
+    - 700
+    - 1200
+    - 2268
+    armor: 80
+    resist: 20
+    attackDamages:
+    - 60
+    - 108
+    - 194.4
+    attackSpeed: 0.55
+    attackRange: 2
+    initialMana: 50
+    maxMana: 100
+    isMelee: 0

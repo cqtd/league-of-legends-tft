@@ -1,0 +1,19 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6e62f84bbf7d458fbe8763a693273245, type: 3}
+  m_Name: Titan's Resolve
+  m_EditorClassIdentifier: 
+  id: 25
+  displayName: Titan's Resolve
+  description: When the wearer takes damage or inflicts a critical hit, they gain
+    a stacking damage bonus. The damage stacks up to a limit, at which point the
+    wearer gains Armor and Magic Resistance, and increases in size.

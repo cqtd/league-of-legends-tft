@@ -1,0 +1,37 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 526d403c83e9460b87717024fc371e6f, type: 3}
+  m_Name: TFT4_Irelia
+  m_EditorClassIdentifier: 
+  displayName: Irelia
+  championId: TFT4_Irelia
+  cost: 3
+  traits:
+  - {fileID: 11400000, guid: 50c1c3e05a8a8e649ae5870cb5698314, type: 2}
+  - {fileID: 11400000, guid: a7d29ae0225e38045be134f272802d25, type: 2}
+  - {fileID: 11400000, guid: f34e1f9ca5359d044bc6f53593cc70e3, type: 2}
+  battleStat:
+    healths:
+    - 800
+    - 1440
+    - 2592
+    armor: 40
+    resist: 40
+    attackDamages:
+    - 55
+    - 99
+    - 178.2
+    attackSpeed: 0.65
+    attackRange: 1
+    initialMana: 50
+    maxMana: 100
+    isMelee: 0

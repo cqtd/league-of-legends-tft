@@ -1,0 +1,37 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 526d403c83e9460b87717024fc371e6f, type: 3}
+  m_Name: TFT4_Azir
+  m_EditorClassIdentifier: 
+  displayName: Azir
+  championId: TFT4_Azir
+  cost: 5
+  traits:
+  - {fileID: 11400000, guid: 57551553777b0ad4b940910a51255732, type: 2}
+  - {fileID: 11400000, guid: 449ee569fdec0824a9332ec8a951bbce, type: 2}
+  - {fileID: 11400000, guid: 340970dde5ab3a240a2740e38df67a74, type: 2}
+  battleStat:
+    healths:
+    - 950
+    - 1710
+    - 3078
+    armor: 30
+    resist: 20
+    attackDamages:
+    - 70
+    - 126
+    - 226.8
+    attackSpeed: 0.85
+    attackRange: 3
+    initialMana: 75
+    maxMana: 150
+    isMelee: 0
