@@ -10,21 +10,32 @@ namespace BattleSimulator
 		{
 			DataManager.Instance.Initialize();
 
-			Entity[] teamA = new[]
-			{
-				new Entity(
-					DataManager.Instance.GetChampionByCost(1),
-					new Item[0] , 0, 0)
-			};
+			Deck deckA = new Deck()
+				.AddEntity(
+					new Entity(DataManager.Instance.GetChampionByCost(1), 1)
+						.SetPosition(0,0)
+				)
+				.AddEntity(
+					new Entity(DataManager.Instance.GetChampionByCost(1), 1)
+						.SetPosition(1,0)
+				)
+				.AddEntity(
+					new Entity(DataManager.Instance.GetChampionByCost(1), 1)
+						.SetPosition(2,0)
+				)
+				;
 			
-			Entity[] teamB = new[]
-			{
-				new Entity(
-					DataManager.Instance.GetChampionByCost(1),
-					new Item[0] , 0, 0)
-			};
+			Deck deckB = new Deck()
+				.AddEntity(
+					new Entity(DataManager.Instance.GetChampionByCost(1), 2)
+						.SetPosition(0,0)
+				)				
+				.AddEntity(
+					new Entity(DataManager.Instance.GetChampionByCost(1), 2)
+						.SetPosition(2,0)
+				);
 			
-			new BattleGround(teamA, teamB)
+			new BattleGround(deckA, deckB)
 				.Wait()
 				.OnComplete(Console.WriteLine);
 			

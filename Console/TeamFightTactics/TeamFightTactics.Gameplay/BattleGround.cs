@@ -8,35 +8,29 @@ namespace TeamFightTactics.Gameplay
 {
 	public class BattleGround
 	{
-		private readonly Dictionary<int, Entity[]> map;
-
-		private readonly List<Entity> teamA;
-		private readonly List<Entity> teamB;
-		
 		private bool complete;
 
-		public BattleGround(Entity[] teamA, Entity[] teamB)
+		private Deck a;
+		private Deck b;
+
+		public BattleGround(Deck deckA, Deck deckB)
 		{
-			map = new Dictionary<int, Entity[]>();
-			
-			for (int i = 0; i < 4; i++)
-			{
-				map[i] = new Entity[9];
-			}
+			a = deckA;
+			b = deckB;
 
-			this.teamA = teamA.ToList();
-			this.teamB = teamB.ToList();
-
-			foreach (Entity entity in teamA)
+			foreach (Entity entity in deckA.entities)
 			{
 				entity.SetTeam(0);
 			}
 
-			foreach (Entity entity in teamB)
+			foreach (Entity entity in deckB.entities)
 			{
 				entity.SetTeam(1);
 				entity.Reverse();
 			}
+
+			BattleManager.Instance.Register(a);
+			BattleManager.Instance.Register(b);
 		}
 
 		public BattleGround Wait()
@@ -73,15 +67,33 @@ namespace TeamFightTactics.Gameplay
 		public async void Fight()
 		{
 			Console.WriteLine("Fight Begin");
+
+			const float maxSecond = 30;
+			const int deltaTime = 10;
+			float time = 0f;
 			
-			Thread.Sleep(1000);
+			while (maxSecond > time)
+			{
+				foreach (Entity entity in a.entities)
+				{
+					entity.BattleLogic(deltaTime);
+				}
+				
+				foreach (Entity entity in b.entities)
+				{
+					entity.BattleLogic(deltaTime);
+				}
+				
+				Thread.Sleep(deltaTime);
+				time += 0.01f;
+
+				if (BattleManager.Instance.IsDone())
+				{
+					time = float.MaxValue;
+				}
+			}
 			
 			Console.WriteLine("Fight End");
-		}
-
-		private async void FightThread()
-		{
-			Thread.Sleep(1000);
 		}
 
 		public async void PostProcess()
@@ -91,8 +103,8 @@ namespace TeamFightTactics.Gameplay
 
 		public ETeam GetResult()
 		{
-			int restA = teamA.Count(e => e.IsAlive());
-			int restB = teamB.Count(e => e.IsAlive());
+			int restA = a.entities.Count(e => e.IsAlive());
+			int restB = b.entities.Count(e => e.IsAlive());
 
 			if (restA > 0 && restB > 0)
 			{
